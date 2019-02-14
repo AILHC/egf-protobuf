@@ -1,0 +1,35 @@
+{
+  "name": "egf-protobuf",
+  "version": "1.0.0",
+  "description": "1. 提供 protobuf.js 基础运行时库\\r 2. 提供命令行脚本，将 protofile 生成 JavaScript 代码\\r 3. 生成正确的 .d.ts 代码，以方便 TypeScript 项目使用\\r",
+  "main": "index.js",
+  "bin": {
+    "pb-egf": "out/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "protobuf",
+    "jscode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AILHC/egf-protobuf.git"
+  },
+  "author": "AILHC",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "fs-extra-promise": "^1.0.1",
+    "uglify-js": "^3.3.7",
+    "@types/rimraf": "^2.0.2",
+    "rimraf": "^2.6.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra-promise": "^1.0.4",
+    "@types/node": "^9.6.42",
+    "@types/uglify-js": "^2.6.30"
+  }
+}
