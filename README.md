@@ -57,12 +57,16 @@ npm install egf-pb -g
 
 
 ## 更新日志
+
+### 1.0.2
+修复和确认某些windows环境 生成报错的问题
+
 ### 1.0.1
 命令行命令运行使用第三方库commander;
-使用方式
+使用方式修改
 
     1. pb-egf g<或者generate>   //生成当前项目目录下的protojs
-    2. pb-egf a<或者add> //拷贝proto .d.ts定义文件，以及protojs的解析库，还有pb-egf的配置文件
+    2. pb-egf a<或者add>  <egret/空> //拷贝proto .d.ts定义文件，以及protojs的解析库，还有pb-egf的配置文件  可以传参数，egret 就是egret项目，不传则是通用初始化
 
 
 ### 1.0.0
