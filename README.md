@@ -20,7 +20,7 @@ protobufjs 提供了多种使用方式，由于微信小游戏禁止 eval , new 
 ## 如何安装
 
 ```
-npm install protobufjs@6.8.4 -g
+npm install protobufjs@6.8.4 -g   //必须安装，如果有任何报错，可能就是这个没有安装的问题
 npm install egf-pb -g
 ```
 

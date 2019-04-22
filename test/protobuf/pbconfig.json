@@ -9,5 +9,5 @@
 	"dtsOutDir": "protofile",
 	"outFileName": "proto_bundle",
 	"sourceRoot": "protofile",
-	"outputDir": "bundles/protobuf-bundles.js"
+	"outputDir": "bundles"
 }
