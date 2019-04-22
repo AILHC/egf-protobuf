@@ -1,0 +1,13 @@
+{
+	"options": {
+		"no-create": false,
+		"no-verify": false,
+		"no-convert": true,
+		"no-delimited": false
+	},
+	"outputFileType": 0,
+	"dtsOutDir": "protofile",
+	"outFileName": "proto_bundle",
+	"sourceRoot": "protofile",
+	"outputDir": "bundles/protobuf-bundles.js"
+}

@@ -57,6 +57,13 @@ npm install egf-pb -g
 
 
 ## 更新日志
+### 1.0.1
+命令行命令运行使用第三方库commander;
+使用方式
+
+    1. pb-egf g<或者generate>   //生成当前项目目录下的protojs
+    2. pb-egf a<或者add> //拷贝proto .d.ts定义文件，以及protojs的解析库，还有pb-egf的配置文件
+
 
 ### 1.0.0
 初始版本，基于pb-egret改造，更加自由，protobuf的库文件和proto文件合并，兼容cocosCreator的使用

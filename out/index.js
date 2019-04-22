@@ -204,14 +204,16 @@ function generate(rootDir) {
         });
     });
 }
-function initEgretProj(egretProjectRoot) {
+exports.generate = generate;
+function initEgretProj(egretProjectRoot, projType) {
+    if (egretProjectRoot === void 0) { egretProjectRoot = "."; }
     return __awaiter(this, void 0, void 0, function () {
         var egretPropertiesPath, egretProperties, tsconfig;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     console.log('正在将 protobuf 源码拷贝至项目中...');
-                    return [4 /*yield*/, fs.copyAsync(path.join(root, 'lib'), path.join(egretProjectRoot, 'protobuf/library'))];
+                    return [4 /*yield*/, fs.copyAsync(path.join(root, 'pblib'), path.join(egretProjectRoot, 'protobuf/library'))];
                 case 1:
                     _a.sent();
                     return [4 /*yield*/, fs.mkdirpSync(path.join(egretProjectRoot, 'protobuf/protofile'))];
@@ -223,6 +225,7 @@ function initEgretProj(egretProjectRoot) {
                     return [4 /*yield*/, fs.writeFileAsync((path.join(egretProjectRoot, 'protobuf/pbconfig.json')), pbconfigContent, 'utf-8')];
                 case 4:
                     _a.sent();
+                    if (!(projType === "egret")) return [3 /*break*/, 11];
                     egretPropertiesPath = path.join(egretProjectRoot, 'egretProperties.json');
                     return [4 /*yield*/, fs.existsAsync(egretPropertiesPath)];
                 case 5:
@@ -253,31 +256,4 @@ function initEgretProj(egretProjectRoot) {
         });
     });
 }
-function run(command, projRoot) {
-    run_1(command, projRoot).catch(function (e) { return console.log(e); });
-}
-exports.run = run;
-function run_1(command, projRoot) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!(command == "add")) return [3 /*break*/, 2];
-                    return [4 /*yield*/, initEgretProj(projRoot)];
-                case 1:
-                    _a.sent();
-                    return [3 /*break*/, 5];
-                case 2:
-                    if (!(command == "generate")) return [3 /*break*/, 4];
-                    return [4 /*yield*/, generate(projRoot)];
-                case 3:
-                    _a.sent();
-                    return [3 /*break*/, 5];
-                case 4:
-                    console.error('请输入命令: add / generate');
-                    _a.label = 5;
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-}
+exports.initEgretProj = initEgretProj;

@@ -46,14 +46,14 @@ const pbconfigContent = JSON.stringify({
         "no-convert": true,
         "no-delimited": false
     },
-    outputFileType:0,
-	dtsOutDir:"protofile",
-	outFileName:"proto_bundle",
+    outputFileType: 0,
+    dtsOutDir: "protofile",
+    outFileName: "proto_bundle",
     sourceRoot: "protofile",
     outputDir: "bundles/protobuf-bundles.js"
 } as ProtobufConfig, null, '\t');
 
-async function generate(rootDir: string) {
+export async function generate(rootDir: string) {
 
     const pbconfigPath = path.join(rootDir, 'pbconfig.json');
     if (!(await fs.existsAsync(pbconfigPath))) {
@@ -72,15 +72,15 @@ async function generate(rootDir: string) {
     const pbconfig: ProtobufConfig = await fs.readJSONAsync(path.join(rootDir, 'pbconfig.json'));
     const tempfile = path.join(os.tmpdir(), 'pbegf', 'temp.js');
     await fs.mkdirpAsync(path.dirname(tempfile));
-    
-    const output = path.join(rootDir, pbconfig.outputDir+"/"+pbconfig.outFileName+".js");
+
+    const output = path.join(rootDir, pbconfig.outputDir + "/" + pbconfig.outFileName + ".js");
     const dirname = path.dirname(output);
-    await new Promise((res,rej)=>{
-        rimraf(dirname,function(){
+    await new Promise((res, rej) => {
+        rimraf(dirname, function () {
             res();
         })
     })
-    
+
     await fs.mkdirpAsync(dirname);
     const protoRoot = path.join(rootDir, pbconfig.sourceRoot);
     const fileList = await fs.readdirAsync(protoRoot);
@@ -115,14 +115,14 @@ async function generate(rootDir: string) {
     console.log("[egf-protobuf]解析proto文件");
     let pbjsResult = await fs.readFileAsync(tempfile, 'utf-8');
     let pbjsLib = await fs.readFileAsync(path.join(root, 'pblib/protobuf-library.min.js'))
-    let outPbj = pbjsLib+'var $protobuf = window.protobuf;\n$protobuf.roots.default=window;\n' + pbjsResult;
-    console.log("[egf-protobuf]解析proto文件->完成"+output);
-    if(pbconfig.outputFileType===0||pbconfig.outputFileType===1){
+    let outPbj = pbjsLib + 'var $protobuf = window.protobuf;\n$protobuf.roots.default=window;\n' + pbjsResult;
+    console.log("[egf-protobuf]解析proto文件->完成" + output);
+    if (pbconfig.outputFileType === 0 || pbconfig.outputFileType === 1) {
         console.log("[egf-protobuf]生成js文件");
         await fs.writeFileAsync(output, outPbj, 'utf-8');
         console.log("[egf-protobuf]生成js文件->完成");
     }
-    if(pbconfig.outputFileType===0||pbconfig.outputFileType===2){
+    if (pbconfig.outputFileType === 0 || pbconfig.outputFileType === 2) {
         console.log("[egf-protobuf]生成.min.js文件");
         const minjs = UglifyJS.minify(outPbj);
         await fs.writeFileAsync(output.replace('.js', '.min.js'), minjs.code, 'utf-8');
@@ -133,7 +133,7 @@ async function generate(rootDir: string) {
     let pbtsResult = await fs.readFileAsync(tempfile, 'utf-8');
     pbtsResult = pbtsResult.replace(/\$protobuf/gi, "protobuf").replace(/export namespace/gi, 'declare namespace');
     pbtsResult = 'type Long = protobuf.Long;\n' + pbtsResult;
-    let dtsOut = path.join(rootDir, pbconfig.dtsOutDir+"/"+pbconfig.outFileName+".d.ts");
+    let dtsOut = path.join(rootDir, pbconfig.dtsOutDir + "/" + pbconfig.outFileName + ".d.ts");
     console.log("[egf-protobuf]解析js文件->完成");
     console.log("[egf-protobuf]生成.d.ts文件->");
     await fs.writeFileAsync(dtsOut, pbtsResult, 'utf-8');
@@ -144,47 +144,31 @@ async function generate(rootDir: string) {
 
 
 
-async function initEgretProj(egretProjectRoot: string) {
+export async function initEgretProj(egretProjectRoot: string = ".", projType: string) {
     console.log('正在将 protobuf 源码拷贝至项目中...');
-    await fs.copyAsync(path.join(root, 'lib'), path.join(egretProjectRoot, 'protobuf/library'));
+    await fs.copyAsync(path.join(root, 'pblib'), path.join(egretProjectRoot, 'protobuf/library'));
     await fs.mkdirpSync(path.join(egretProjectRoot, 'protobuf/protofile'));
     await fs.mkdirpSync(path.join(egretProjectRoot, 'protobuf/bundles'));
     await fs.writeFileAsync((path.join(egretProjectRoot, 'protobuf/pbconfig.json')), pbconfigContent, 'utf-8');
+    if (projType === "egret") {
+        const egretPropertiesPath = path.join(egretProjectRoot, 'egretProperties.json');
+        if (await fs.existsAsync(egretPropertiesPath)) {
+            console.log('正在将 protobuf 添加到 egretProperties.json 中...');
+            const egretProperties = await fs.readJSONAsync(egretPropertiesPath);
+            egretProperties.modules.push({ name: 'protobuf-library', path: 'protobuf/library' });
+            egretProperties.modules.push({ name: 'protobuf-bundles', path: 'protobuf/bundles' });
+            await fs.writeFileAsync(path.join(egretProjectRoot, 'egretProperties.json'), JSON.stringify(egretProperties, null, '\t\t'));
+            console.log('正在将 protobuf 添加到 tsconfig.json 中...');
+            const tsconfig = await fs.readJSONAsync(path.join(egretProjectRoot, 'tsconfig.json'));
+            tsconfig.include.push('protobuf/**/*.d.ts');
+            await fs.writeFileAsync(path.join(egretProjectRoot, 'tsconfig.json'), JSON.stringify(tsconfig, null, '\t\t'));
+        }
+        else {
+            console.log('输入的文件夹不是白鹭引擎项目')
+        }
+    }
 
-    const egretPropertiesPath = path.join(egretProjectRoot, 'egretProperties.json');
-    if (await fs.existsAsync(egretPropertiesPath)) {
-        console.log('正在将 protobuf 添加到 egretProperties.json 中...');
-        const egretProperties = await fs.readJSONAsync(egretPropertiesPath);
-        egretProperties.modules.push({ name: 'protobuf-library', path: 'protobuf/library' });
-        egretProperties.modules.push({ name: 'protobuf-bundles', path: 'protobuf/bundles' });
-        await fs.writeFileAsync(path.join(egretProjectRoot, 'egretProperties.json'), JSON.stringify(egretProperties, null, '\t\t'));
-        console.log('正在将 protobuf 添加到 tsconfig.json 中...');
-        const tsconfig = await fs.readJSONAsync(path.join(egretProjectRoot, 'tsconfig.json'));
-        tsconfig.include.push('protobuf/**/*.d.ts');
-        await fs.writeFileAsync(path.join(egretProjectRoot, 'tsconfig.json'), JSON.stringify(tsconfig, null, '\t\t'));
-    }
-    else {
-        console.log('输入的文件夹不是白鹭引擎项目')
-    }
 
 
 }
 
-
-export function run(command: string, projRoot: string) {
-    run_1(command, projRoot).catch(e => console.log(e))
-}
-
-async function run_1(command: string, projRoot: string) {
-
-    if (command == "add") {
-        await initEgretProj(projRoot);
-    }
-    else if (command == "generate") {
-        await generate(projRoot)
-    }
-    else {
-        console.error('请输入命令: add / generate')
-    }
-
-}
