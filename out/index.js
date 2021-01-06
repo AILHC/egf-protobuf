@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -35,12 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.initProj = exports.generate = void 0;
 var child_process = require("child_process");
 var fs = require("fs-extra-promise");
 var path = require("path");
 var UglifyJS = require("uglify-js");
 var rimraf = require("rimraf");
 var root = path.resolve(__filename, '../../');
+var pbjs = require("protobufjs/cli/pbjs");
+var pbts = require("protobufjs/cli/pbts");
 function shell(command, args) {
     return new Promise(function (resolve, reject) {
         var cmd = command + " " + args.join(" ");
@@ -73,7 +77,7 @@ process.on('unhandledRejection', function (reason, p) {
 });
 function generate(rootDir) {
     return __awaiter(this, void 0, void 0, function () {
-        var pbconfigPath, pbconfigPath_1, pbconfig, tempfile, output, dirname, protoRoot, fileList, protoList, args, pbjsResult, pbjsLib, outPbj, minjs, pbtsResult, dtsOut;
+        var pbconfigPath, pbconfigPath_1, pbconfig, tempfile, pbjsFile, dirname, protoRoot, fileList, protoList, args, pbjsResult, pbjsLib, outPbj, minjs, pbtsResult, dtsOut, isExit_dts, dtsOutDirPath, isExit_dtsOutDir;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -111,8 +115,8 @@ function generate(rootDir) {
                     return [4 /*yield*/, fs.writeFileAsync(tempfile, "")];
                 case 12:
                     _a.sent();
-                    output = path.join(rootDir, pbconfig.outputDir + "/" + pbconfig.outFileName + ".js");
-                    dirname = path.dirname(output);
+                    pbjsFile = path.join(rootDir, pbconfig.outputDir + "/" + pbconfig.outFileName + ".js");
+                    dirname = path.dirname(pbjsFile);
                     return [4 /*yield*/, new Promise(function (res, rej) {
                             rimraf(dirname, function () {
                                 res();
@@ -149,7 +153,7 @@ function generate(rootDir) {
                         }); }))];
                 case 16:
                     _a.sent();
-                    args = ['-t', 'static', '--keep-case', '-p', protoRoot, protoList.join(" "), '-o', tempfile];
+                    args = ['-t', 'static', '--keep-case', '-p', protoRoot].concat(protoList);
                     if (pbconfig.options['no-create']) {
                         args.unshift('--no-create');
                     }
@@ -162,59 +166,95 @@ function generate(rootDir) {
                     if (pbconfig.options["no-delimited"]) {
                         args.unshift("--no-delimited");
                     }
-                    return [4 /*yield*/, shell('pbjs', args).catch(function (res) {
-                            console.log(res);
+                    console.log("[egf-protobuf]解析proto文件");
+                    return [4 /*yield*/, new Promise(function (res) {
+                            pbjs.main(args, function (err, output) {
+                                if (err) {
+                                    console.error(err);
+                                }
+                                res(output);
+                                return {};
+                            });
                         })];
                 case 17:
-                    _a.sent();
-                    console.log("[egf-protobuf]解析proto文件");
-                    return [4 /*yield*/, fs.readFileAsync(tempfile, 'utf-8').catch(function (res) { console.log(res); })];
-                case 18:
                     pbjsResult = _a.sent();
                     return [4 /*yield*/, fs.readFileAsync(path.join(root, 'pblib/protobuf-library.min.js')).catch(function (res) { console.log(res); })];
-                case 19:
+                case 18:
                     pbjsLib = _a.sent();
                     outPbj = pbjsLib + 'var $protobuf = window.protobuf;\n$protobuf.roots.default=window;\n' + pbjsResult;
-                    console.log("[egf-protobuf]解析proto文件->完成" + output);
-                    if (!(pbconfig.outputFileType === 0 || pbconfig.outputFileType === 1)) return [3 /*break*/, 21];
+                    console.log("[egf-protobuf]解析proto文件->完成" + pbjsFile);
+                    if (!(pbconfig.outputFileType === 0 || pbconfig.outputFileType === 1)) return [3 /*break*/, 20];
                     console.log("[egf-protobuf]生成js文件");
-                    return [4 /*yield*/, fs.writeFileAsync(output, outPbj, 'utf-8').catch(function (res) { console.log(res); })];
-                case 20:
+                    return [4 /*yield*/, fs.writeFileAsync(pbjsFile, outPbj, 'utf-8').catch(function (res) { console.log(res); })];
+                case 19:
                     _a.sent();
                     ;
                     console.log("[egf-protobuf]生成js文件->完成");
-                    _a.label = 21;
-                case 21:
-                    if (!(pbconfig.outputFileType === 0 || pbconfig.outputFileType === 2)) return [3 /*break*/, 23];
+                    _a.label = 20;
+                case 20:
+                    if (!(pbconfig.outputFileType === 0 || pbconfig.outputFileType === 2)) return [3 /*break*/, 22];
                     console.log("[egf-protobuf]生成.min.js文件");
                     minjs = UglifyJS.minify(outPbj);
-                    return [4 /*yield*/, fs.writeFileAsync(output.replace('.js', '.min.js'), minjs.code, 'utf-8')];
-                case 22:
+                    return [4 /*yield*/, fs.writeFileAsync(pbjsFile.replace('.js', '.min.js'), minjs.code, 'utf-8')];
+                case 21:
                     _a.sent();
                     console.log("[egf-protobuf]生成.min.js文件->完成");
-                    _a.label = 23;
-                case 23: return [4 /*yield*/, shell('pbts', ['--main', output, '-o', tempfile]).catch(function (res) {
-                        console.error("\u68C0\u67E5\u662F\u5426\u5B89\u88C5\u4E86protobufjs");
-                        console.log(res);
-                    })];
-                case 24:
-                    _a.sent();
-                    console.log("[egf-protobuf]解析js文件");
-                    return [4 /*yield*/, fs.readFileAsync(tempfile, 'utf-8').catch(function (res) { console.log(res); })];
-                case 25:
+                    _a.label = 22;
+                case 22:
+                    console.log("[egf-protobuf]解析js文件生成.d.ts中");
+                    return [4 /*yield*/, new Promise(function (res) {
+                            pbts.main(['--main', pbjsFile], function (err, output) {
+                                if (err) {
+                                    console.error(err);
+                                }
+                                res(output);
+                                return {};
+                            });
+                        })
+                        // pbtsResult = await fs.readFileAsync(tempfile, 'utf-8').catch(function (res) { console.log(res) }) as any;
+                    ];
+                case 23:
                     pbtsResult = _a.sent();
+                    // pbtsResult = await fs.readFileAsync(tempfile, 'utf-8').catch(function (res) { console.log(res) }) as any;
                     pbtsResult = pbtsResult.replace(/\$protobuf/gi, "protobuf").replace(/export namespace/gi, 'declare namespace');
                     pbtsResult = 'type Long = protobuf.Long;\n' + pbtsResult;
-                    dtsOut = path.join(rootDir, pbconfig.dtsOutDir + "/" + pbconfig.outFileName + ".d.ts");
+                    dtsOut = path.join(rootDir, pbconfig.dtsOutDir, pbconfig.outFileName + ".d.ts");
                     console.log("[egf-protobuf]解析js文件->完成");
+                    return [4 /*yield*/, fs.existsAsync(dtsOut)];
+                case 24:
+                    isExit_dts = _a.sent();
+                    if (!isExit_dts) return [3 /*break*/, 26];
+                    console.log("[egf-protobuf]\u5220\u9664\u65E7.d.ts\u6587\u4EF6:" + dtsOut);
+                    return [4 /*yield*/, new Promise(function (res, rej) {
+                            rimraf(dtsOut, function () {
+                                res();
+                            });
+                        })];
+                case 25:
+                    _a.sent();
+                    _a.label = 26;
+                case 26:
+                    dtsOutDirPath = path.dirname(dtsOut);
+                    if (!(rootDir !== dtsOutDirPath)) return [3 /*break*/, 29];
+                    return [4 /*yield*/, fs.existsAsync(dtsOutDirPath)];
+                case 27:
+                    isExit_dtsOutDir = _a.sent();
+                    if (!!isExit_dtsOutDir) return [3 /*break*/, 29];
+                    //
+                    console.log("[egf-protobuf]\u521B\u5EFA.d.ts \u7684\u6587\u4EF6\u5939:" + dtsOutDirPath + "->");
+                    return [4 /*yield*/, fs.mkdirAsync(dtsOutDirPath)];
+                case 28:
+                    _a.sent();
+                    _a.label = 29;
+                case 29:
                     console.log("[egf-protobuf]生成.d.ts文件->");
                     return [4 /*yield*/, fs.writeFileAsync(dtsOut, pbtsResult, 'utf-8').catch(function (res) { console.log(res); })];
-                case 26:
+                case 30:
                     _a.sent();
                     ;
                     console.log("[egf-protobuf]生成.d.ts文件->完成");
                     return [4 /*yield*/, fs.removeAsync(tempfile).catch(function (res) { console.log(res); })];
-                case 27:
+                case 31:
                     _a.sent();
                     ;
                     return [2 /*return*/];
@@ -223,30 +263,30 @@ function generate(rootDir) {
     });
 }
 exports.generate = generate;
-function initEgretProj(egretProjectRoot, projType) {
-    if (egretProjectRoot === void 0) { egretProjectRoot = "."; }
+function initProj(projRoot, projType) {
+    if (projRoot === void 0) { projRoot = "."; }
     return __awaiter(this, void 0, void 0, function () {
         var egretPropertiesPath, egretProperties, tsconfig;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     console.log('正在将 protobuf 源码拷贝至项目中...');
-                    return [4 /*yield*/, fs.copyAsync(path.join(root, 'pblib'), path.join(egretProjectRoot, 'protobuf/library')).catch(function (res) { console.log(res); })];
+                    return [4 /*yield*/, fs.copyAsync(path.join(root, 'pblib'), path.join(projRoot, 'protobuf/library')).catch(function (res) { console.log(res); })];
                 case 1:
                     _a.sent();
                     ;
-                    return [4 /*yield*/, fs.mkdirpSync(path.join(egretProjectRoot, 'protobuf/protofile'))];
+                    return [4 /*yield*/, fs.mkdirpSync(path.join(projRoot, 'protobuf/protofile'))];
                 case 2:
                     _a.sent();
-                    return [4 /*yield*/, fs.mkdirpSync(path.join(egretProjectRoot, 'protobuf/bundles'))];
+                    return [4 /*yield*/, fs.mkdirpSync(path.join(projRoot, 'protobuf/bundles'))];
                 case 3:
                     _a.sent();
-                    return [4 /*yield*/, fs.writeFileAsync((path.join(egretProjectRoot, 'protobuf/pbconfig.json')), pbconfigContent, 'utf-8').catch(function (res) { console.log(res); })];
+                    return [4 /*yield*/, fs.writeFileAsync((path.join(projRoot, 'protobuf/pbconfig.json')), pbconfigContent, 'utf-8').catch(function (res) { console.log(res); })];
                 case 4:
                     _a.sent();
                     ;
                     if (!(projType === "egret")) return [3 /*break*/, 11];
-                    egretPropertiesPath = path.join(egretProjectRoot, 'egretProperties.json');
+                    egretPropertiesPath = path.join(projRoot, 'egretProperties.json');
                     return [4 /*yield*/, fs.existsAsync(egretPropertiesPath)];
                 case 5:
                     if (!_a.sent()) return [3 /*break*/, 10];
@@ -256,15 +296,15 @@ function initEgretProj(egretProjectRoot, projType) {
                     egretProperties = _a.sent();
                     egretProperties.modules.push({ name: 'protobuf-library', path: 'protobuf/library' });
                     egretProperties.modules.push({ name: 'protobuf-bundles', path: 'protobuf/bundles' });
-                    return [4 /*yield*/, fs.writeFileAsync(path.join(egretProjectRoot, 'egretProperties.json'), JSON.stringify(egretProperties, null, '\t\t'))];
+                    return [4 /*yield*/, fs.writeFileAsync(path.join(projRoot, 'egretProperties.json'), JSON.stringify(egretProperties, null, '\t\t'))];
                 case 7:
                     _a.sent();
                     console.log('正在将 protobuf 添加到 tsconfig.json 中...');
-                    return [4 /*yield*/, fs.readJSONAsync(path.join(egretProjectRoot, 'tsconfig.json'))];
+                    return [4 /*yield*/, fs.readJSONAsync(path.join(projRoot, 'tsconfig.json'))];
                 case 8:
                     tsconfig = _a.sent();
                     tsconfig.include.push('protobuf/**/*.d.ts');
-                    return [4 /*yield*/, fs.writeFileAsync(path.join(egretProjectRoot, 'tsconfig.json'), JSON.stringify(tsconfig, null, '\t\t')).catch(function (res) { console.log(res); })];
+                    return [4 /*yield*/, fs.writeFileAsync(path.join(projRoot, 'tsconfig.json'), JSON.stringify(tsconfig, null, '\t\t')).catch(function (res) { console.log(res); })];
                 case 9:
                     _a.sent();
                     ;
@@ -277,4 +317,5 @@ function initEgretProj(egretProjectRoot, projType) {
         });
     });
 }
-exports.initEgretProj = initEgretProj;
+exports.initProj = initProj;
+//# sourceMappingURL=index.js.map

@@ -89,19 +89,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified ResData message, length delimited. Does not implicitly {@link doomsday_pt.ResData.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.ResData
-         * @static
-         * @param {doomsday_pt.IResData} message ResData message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        ResData.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a ResData message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.ResData
@@ -138,22 +125,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a ResData message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.ResData
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.ResData} ResData
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        ResData.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a ResData message.
          * @function verify
          * @memberof doomsday_pt.ResData
@@ -174,6 +145,68 @@ $root.doomsday_pt = (function() {
                         return "param: string[] expected";
             }
             return null;
+        };
+
+        /**
+         * Creates a ResData message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.ResData
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.ResData} ResData
+         */
+        ResData.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.ResData)
+                return object;
+            var message = new $root.doomsday_pt.ResData();
+            if (object.result != null)
+                message.result = object.result >>> 0;
+            if (object.param) {
+                if (!Array.isArray(object.param))
+                    throw TypeError(".doomsday_pt.ResData.param: array expected");
+                message.param = [];
+                for (var i = 0; i < object.param.length; ++i)
+                    message.param[i] = String(object.param[i]);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a ResData message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.ResData
+         * @static
+         * @param {doomsday_pt.ResData} message ResData
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ResData.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.param = [];
+            if (options.defaults)
+                object.result = 0;
+            if (message.result != null && message.hasOwnProperty("result"))
+                object.result = message.result;
+            if (message.param && message.param.length) {
+                object.param = [];
+                for (var j = 0; j < message.param.length; ++j)
+                    object.param[j] = message.param[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this ResData to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.ResData
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ResData.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return ResData;
@@ -260,19 +293,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified DrawAward message, length delimited. Does not implicitly {@link doomsday_pt.DrawAward.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.DrawAward
-         * @static
-         * @param {doomsday_pt.IDrawAward} message DrawAward message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        DrawAward.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a DrawAward message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.DrawAward
@@ -314,22 +334,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a DrawAward message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.DrawAward
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.DrawAward} DrawAward
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        DrawAward.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a DrawAward message.
          * @function verify
          * @memberof doomsday_pt.DrawAward
@@ -347,6 +351,65 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.award_num))
                 return "award_num: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a DrawAward message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.DrawAward
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.DrawAward} DrawAward
+         */
+        DrawAward.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.DrawAward)
+                return object;
+            var message = new $root.doomsday_pt.DrawAward();
+            if (object.award_type != null)
+                message.award_type = object.award_type >>> 0;
+            if (object.award_id != null)
+                message.award_id = object.award_id >>> 0;
+            if (object.award_num != null)
+                message.award_num = object.award_num >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a DrawAward message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.DrawAward
+         * @static
+         * @param {doomsday_pt.DrawAward} message DrawAward
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        DrawAward.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.award_type = 0;
+                object.award_id = 0;
+                object.award_num = 0;
+            }
+            if (message.award_type != null && message.hasOwnProperty("award_type"))
+                object.award_type = message.award_type;
+            if (message.award_id != null && message.hasOwnProperty("award_id"))
+                object.award_id = message.award_id;
+            if (message.award_num != null && message.hasOwnProperty("award_num"))
+                object.award_num = message.award_num;
+            return object;
+        };
+
+        /**
+         * Converts this DrawAward to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.DrawAward
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        DrawAward.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return DrawAward;
@@ -433,19 +496,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified HeroExpMsg message, length delimited. Does not implicitly {@link doomsday_pt.HeroExpMsg.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.HeroExpMsg
-         * @static
-         * @param {doomsday_pt.IHeroExpMsg} message HeroExpMsg message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        HeroExpMsg.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a HeroExpMsg message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.HeroExpMsg
@@ -487,22 +537,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a HeroExpMsg message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.HeroExpMsg
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.HeroExpMsg} HeroExpMsg
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        HeroExpMsg.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a HeroExpMsg message.
          * @function verify
          * @memberof doomsday_pt.HeroExpMsg
@@ -520,6 +554,65 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.exp))
                 return "exp: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a HeroExpMsg message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.HeroExpMsg
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.HeroExpMsg} HeroExpMsg
+         */
+        HeroExpMsg.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.HeroExpMsg)
+                return object;
+            var message = new $root.doomsday_pt.HeroExpMsg();
+            if (object.hero_id != null)
+                message.hero_id = object.hero_id >>> 0;
+            if (object.grade != null)
+                message.grade = object.grade >>> 0;
+            if (object.exp != null)
+                message.exp = object.exp >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HeroExpMsg message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.HeroExpMsg
+         * @static
+         * @param {doomsday_pt.HeroExpMsg} message HeroExpMsg
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HeroExpMsg.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.hero_id = 0;
+                object.grade = 0;
+                object.exp = 0;
+            }
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                object.hero_id = message.hero_id;
+            if (message.grade != null && message.hasOwnProperty("grade"))
+                object.grade = message.grade;
+            if (message.exp != null && message.hasOwnProperty("exp"))
+                object.exp = message.exp;
+            return object;
+        };
+
+        /**
+         * Converts this HeroExpMsg to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.HeroExpMsg
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HeroExpMsg.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return HeroExpMsg;
@@ -602,19 +695,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified BattleAward message, length delimited. Does not implicitly {@link doomsday_pt.BattleAward.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.BattleAward
-         * @static
-         * @param {doomsday_pt.IBattleAward} message BattleAward message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        BattleAward.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a BattleAward message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.BattleAward
@@ -651,22 +731,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a BattleAward message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.BattleAward
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.BattleAward} BattleAward
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        BattleAward.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a BattleAward message.
          * @function verify
          * @memberof doomsday_pt.BattleAward
@@ -696,6 +760,82 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a BattleAward message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.BattleAward
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.BattleAward} BattleAward
+         */
+        BattleAward.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.BattleAward)
+                return object;
+            var message = new $root.doomsday_pt.BattleAward();
+            if (object.draw_award) {
+                if (!Array.isArray(object.draw_award))
+                    throw TypeError(".doomsday_pt.BattleAward.draw_award: array expected");
+                message.draw_award = [];
+                for (var i = 0; i < object.draw_award.length; ++i) {
+                    if (typeof object.draw_award[i] !== "object")
+                        throw TypeError(".doomsday_pt.BattleAward.draw_award: object expected");
+                    message.draw_award[i] = $root.doomsday_pt.DrawAward.fromObject(object.draw_award[i]);
+                }
+            }
+            if (object.hero_exp_msg) {
+                if (!Array.isArray(object.hero_exp_msg))
+                    throw TypeError(".doomsday_pt.BattleAward.hero_exp_msg: array expected");
+                message.hero_exp_msg = [];
+                for (var i = 0; i < object.hero_exp_msg.length; ++i) {
+                    if (typeof object.hero_exp_msg[i] !== "object")
+                        throw TypeError(".doomsday_pt.BattleAward.hero_exp_msg: object expected");
+                    message.hero_exp_msg[i] = $root.doomsday_pt.HeroExpMsg.fromObject(object.hero_exp_msg[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BattleAward message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.BattleAward
+         * @static
+         * @param {doomsday_pt.BattleAward} message BattleAward
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BattleAward.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.draw_award = [];
+                object.hero_exp_msg = [];
+            }
+            if (message.draw_award && message.draw_award.length) {
+                object.draw_award = [];
+                for (var j = 0; j < message.draw_award.length; ++j)
+                    object.draw_award[j] = $root.doomsday_pt.DrawAward.toObject(message.draw_award[j], options);
+            }
+            if (message.hero_exp_msg && message.hero_exp_msg.length) {
+                object.hero_exp_msg = [];
+                for (var j = 0; j < message.hero_exp_msg.length; ++j)
+                    object.hero_exp_msg[j] = $root.doomsday_pt.HeroExpMsg.toObject(message.hero_exp_msg[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BattleAward to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.BattleAward
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BattleAward.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return BattleAward;
@@ -772,19 +912,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified GetGoods message, length delimited. Does not implicitly {@link doomsday_pt.GetGoods.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.GetGoods
-         * @static
-         * @param {doomsday_pt.IGetGoods} message GetGoods message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        GetGoods.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a GetGoods message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.GetGoods
@@ -821,22 +948,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a GetGoods message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.GetGoods
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.GetGoods} GetGoods
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        GetGoods.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a GetGoods message.
          * @function verify
          * @memberof doomsday_pt.GetGoods
@@ -852,6 +963,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.number))
                 return "number: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a GetGoods message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.GetGoods
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.GetGoods} GetGoods
+         */
+        GetGoods.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.GetGoods)
+                return object;
+            var message = new $root.doomsday_pt.GetGoods();
+            if (object.tab_id != null)
+                message.tab_id = object.tab_id >>> 0;
+            if (object.number != null)
+                message.number = object.number >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetGoods message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.GetGoods
+         * @static
+         * @param {doomsday_pt.GetGoods} message GetGoods
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetGoods.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.tab_id = 0;
+                object.number = 0;
+            }
+            if (message.tab_id != null && message.hasOwnProperty("tab_id"))
+                object.tab_id = message.tab_id;
+            if (message.number != null && message.hasOwnProperty("number"))
+                object.number = message.number;
+            return object;
+        };
+
+        /**
+         * Converts this GetGoods to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.GetGoods
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetGoods.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return GetGoods;
@@ -938,19 +1103,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10000001 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10000001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10000001
-         * @static
-         * @param {doomsday_pt.ICs_10000001} message Cs_10000001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10000001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10000001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10000001
@@ -992,22 +1144,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10000001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10000001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10000001} Cs_10000001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10000001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10000001 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10000001
@@ -1025,6 +1161,65 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.num))
                 return "num: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10000001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10000001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10000001} Cs_10000001
+         */
+        Cs_10000001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10000001)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10000001();
+            if (object.mg_name != null)
+                message.mg_name = String(object.mg_name);
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            if (object.num != null)
+                message.num = object.num | 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10000001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10000001
+         * @static
+         * @param {doomsday_pt.Cs_10000001} message Cs_10000001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10000001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.mg_name = "";
+                object.id = 0;
+                object.num = 0;
+            }
+            if (message.mg_name != null && message.hasOwnProperty("mg_name"))
+                object.mg_name = message.mg_name;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.num != null && message.hasOwnProperty("num"))
+                object.num = message.num;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10000001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10000001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10000001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10000001;
@@ -1091,19 +1286,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10000001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10000001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10000001
-         * @static
-         * @param {doomsday_pt.ISc_10000001} message Sc_10000001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10000001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10000001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10000001
@@ -1135,22 +1317,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10000001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10000001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10000001} Sc_10000001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10000001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10000001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10000001
@@ -1167,6 +1333,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10000001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10000001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10000001} Sc_10000001
+         */
+        Sc_10000001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10000001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10000001();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10000001.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10000001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10000001
+         * @static
+         * @param {doomsday_pt.Sc_10000001} message Sc_10000001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10000001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10000001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10000001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10000001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10000001;
@@ -1253,19 +1470,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_HeroMsg message, length delimited. Does not implicitly {@link doomsday_pt.Pt_HeroMsg.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_HeroMsg
-         * @static
-         * @param {doomsday_pt.IPt_HeroMsg} message Pt_HeroMsg message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_HeroMsg.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_HeroMsg message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_HeroMsg
@@ -1307,22 +1511,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_HeroMsg message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_HeroMsg
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_HeroMsg} Pt_HeroMsg
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_HeroMsg.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_HeroMsg message.
          * @function verify
          * @memberof doomsday_pt.Pt_HeroMsg
@@ -1340,6 +1528,79 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.grade))
                 return "grade: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_HeroMsg message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_HeroMsg
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_HeroMsg} Pt_HeroMsg
+         */
+        Pt_HeroMsg.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_HeroMsg)
+                return object;
+            var message = new $root.doomsday_pt.Pt_HeroMsg();
+            if (object.hero_id != null)
+                if ($util.Long)
+                    (message.hero_id = $util.Long.fromValue(object.hero_id)).unsigned = true;
+                else if (typeof object.hero_id === "string")
+                    message.hero_id = parseInt(object.hero_id, 10);
+                else if (typeof object.hero_id === "number")
+                    message.hero_id = object.hero_id;
+                else if (typeof object.hero_id === "object")
+                    message.hero_id = new $util.LongBits(object.hero_id.low >>> 0, object.hero_id.high >>> 0).toNumber(true);
+            if (object.index_id != null)
+                message.index_id = object.index_id >>> 0;
+            if (object.grade != null)
+                message.grade = object.grade >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_HeroMsg message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_HeroMsg
+         * @static
+         * @param {doomsday_pt.Pt_HeroMsg} message Pt_HeroMsg
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_HeroMsg.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.hero_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.hero_id = options.longs === String ? "0" : 0;
+                object.index_id = 0;
+                object.grade = 0;
+            }
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                if (typeof message.hero_id === "number")
+                    object.hero_id = options.longs === String ? String(message.hero_id) : message.hero_id;
+                else
+                    object.hero_id = options.longs === String ? $util.Long.prototype.toString.call(message.hero_id) : options.longs === Number ? new $util.LongBits(message.hero_id.low >>> 0, message.hero_id.high >>> 0).toNumber(true) : message.hero_id;
+            if (message.index_id != null && message.hasOwnProperty("index_id"))
+                object.index_id = message.index_id;
+            if (message.grade != null && message.hasOwnProperty("grade"))
+                object.grade = message.grade;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_HeroMsg to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_HeroMsg
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_HeroMsg.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_HeroMsg;
@@ -1489,19 +1750,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_RoleInfo message, length delimited. Does not implicitly {@link doomsday_pt.Pt_RoleInfo.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_RoleInfo
-         * @static
-         * @param {doomsday_pt.IPt_RoleInfo} message Pt_RoleInfo message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_RoleInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_RoleInfo message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_RoleInfo
@@ -1573,22 +1821,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_RoleInfo message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_RoleInfo
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_RoleInfo} Pt_RoleInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_RoleInfo.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_RoleInfo message.
          * @function verify
          * @memberof doomsday_pt.Pt_RoleInfo
@@ -1625,6 +1857,135 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Pt_RoleInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_RoleInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_RoleInfo} Pt_RoleInfo
+         */
+        Pt_RoleInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_RoleInfo)
+                return object;
+            var message = new $root.doomsday_pt.Pt_RoleInfo();
+            if (object.role_id != null)
+                if ($util.Long)
+                    (message.role_id = $util.Long.fromValue(object.role_id)).unsigned = true;
+                else if (typeof object.role_id === "string")
+                    message.role_id = parseInt(object.role_id, 10);
+                else if (typeof object.role_id === "number")
+                    message.role_id = object.role_id;
+                else if (typeof object.role_id === "object")
+                    message.role_id = new $util.LongBits(object.role_id.low >>> 0, object.role_id.high >>> 0).toNumber(true);
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.exp_pool != null)
+                if ($util.Long)
+                    (message.exp_pool = $util.Long.fromValue(object.exp_pool)).unsigned = true;
+                else if (typeof object.exp_pool === "string")
+                    message.exp_pool = parseInt(object.exp_pool, 10);
+                else if (typeof object.exp_pool === "number")
+                    message.exp_pool = object.exp_pool;
+                else if (typeof object.exp_pool === "object")
+                    message.exp_pool = new $util.LongBits(object.exp_pool.low >>> 0, object.exp_pool.high >>> 0).toNumber(true);
+            if (object.vip_grade != null)
+                message.vip_grade = object.vip_grade >>> 0;
+            if (object.vip_exp != null)
+                message.vip_exp = object.vip_exp >>> 0;
+            if (object.gold_coin != null)
+                message.gold_coin = object.gold_coin >>> 0;
+            if (object.diamond != null)
+                message.diamond = object.diamond >>> 0;
+            if (object.fighting != null)
+                message.fighting = object.fighting >>> 0;
+            if (object.hero_list) {
+                if (!Array.isArray(object.hero_list))
+                    throw TypeError(".doomsday_pt.Pt_RoleInfo.hero_list: array expected");
+                message.hero_list = [];
+                for (var i = 0; i < object.hero_list.length; ++i) {
+                    if (typeof object.hero_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Pt_RoleInfo.hero_list: object expected");
+                    message.hero_list[i] = $root.doomsday_pt.Pt_HeroMsg.fromObject(object.hero_list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_RoleInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_RoleInfo
+         * @static
+         * @param {doomsday_pt.Pt_RoleInfo} message Pt_RoleInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_RoleInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.hero_list = [];
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.role_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.role_id = options.longs === String ? "0" : 0;
+                object.nickname = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.exp_pool = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.exp_pool = options.longs === String ? "0" : 0;
+                object.vip_grade = 0;
+                object.vip_exp = 0;
+                object.gold_coin = 0;
+                object.diamond = 0;
+                object.fighting = 0;
+            }
+            if (message.role_id != null && message.hasOwnProperty("role_id"))
+                if (typeof message.role_id === "number")
+                    object.role_id = options.longs === String ? String(message.role_id) : message.role_id;
+                else
+                    object.role_id = options.longs === String ? $util.Long.prototype.toString.call(message.role_id) : options.longs === Number ? new $util.LongBits(message.role_id.low >>> 0, message.role_id.high >>> 0).toNumber(true) : message.role_id;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.exp_pool != null && message.hasOwnProperty("exp_pool"))
+                if (typeof message.exp_pool === "number")
+                    object.exp_pool = options.longs === String ? String(message.exp_pool) : message.exp_pool;
+                else
+                    object.exp_pool = options.longs === String ? $util.Long.prototype.toString.call(message.exp_pool) : options.longs === Number ? new $util.LongBits(message.exp_pool.low >>> 0, message.exp_pool.high >>> 0).toNumber(true) : message.exp_pool;
+            if (message.vip_grade != null && message.hasOwnProperty("vip_grade"))
+                object.vip_grade = message.vip_grade;
+            if (message.vip_exp != null && message.hasOwnProperty("vip_exp"))
+                object.vip_exp = message.vip_exp;
+            if (message.gold_coin != null && message.hasOwnProperty("gold_coin"))
+                object.gold_coin = message.gold_coin;
+            if (message.diamond != null && message.hasOwnProperty("diamond"))
+                object.diamond = message.diamond;
+            if (message.fighting != null && message.hasOwnProperty("fighting"))
+                object.fighting = message.fighting;
+            if (message.hero_list && message.hero_list.length) {
+                object.hero_list = [];
+                for (var j = 0; j < message.hero_list.length; ++j)
+                    object.hero_list[j] = $root.doomsday_pt.Pt_HeroMsg.toObject(message.hero_list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Pt_RoleInfo to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_RoleInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_RoleInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_RoleInfo;
@@ -1741,19 +2102,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_Currency message, length delimited. Does not implicitly {@link doomsday_pt.Pt_Currency.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_Currency
-         * @static
-         * @param {doomsday_pt.IPt_Currency} message Pt_Currency message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_Currency.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_Currency message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_Currency
@@ -1810,22 +2158,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_Currency message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_Currency
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_Currency} Pt_Currency
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_Currency.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_Currency message.
          * @function verify
          * @memberof doomsday_pt.Pt_Currency
@@ -1849,6 +2181,80 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.fighting))
                 return "fighting: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_Currency message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_Currency
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_Currency} Pt_Currency
+         */
+        Pt_Currency.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_Currency)
+                return object;
+            var message = new $root.doomsday_pt.Pt_Currency();
+            if (object.exp_pool != null)
+                message.exp_pool = object.exp_pool >>> 0;
+            if (object.vip_grade != null)
+                message.vip_grade = object.vip_grade >>> 0;
+            if (object.vip_exp != null)
+                message.vip_exp = object.vip_exp >>> 0;
+            if (object.gold_coin != null)
+                message.gold_coin = object.gold_coin >>> 0;
+            if (object.diamond != null)
+                message.diamond = object.diamond >>> 0;
+            if (object.fighting != null)
+                message.fighting = object.fighting >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_Currency message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_Currency
+         * @static
+         * @param {doomsday_pt.Pt_Currency} message Pt_Currency
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_Currency.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.exp_pool = 0;
+                object.vip_grade = 0;
+                object.vip_exp = 0;
+                object.gold_coin = 0;
+                object.diamond = 0;
+                object.fighting = 0;
+            }
+            if (message.exp_pool != null && message.hasOwnProperty("exp_pool"))
+                object.exp_pool = message.exp_pool;
+            if (message.vip_grade != null && message.hasOwnProperty("vip_grade"))
+                object.vip_grade = message.vip_grade;
+            if (message.vip_exp != null && message.hasOwnProperty("vip_exp"))
+                object.vip_exp = message.vip_exp;
+            if (message.gold_coin != null && message.hasOwnProperty("gold_coin"))
+                object.gold_coin = message.gold_coin;
+            if (message.diamond != null && message.hasOwnProperty("diamond"))
+                object.diamond = message.diamond;
+            if (message.fighting != null && message.hasOwnProperty("fighting"))
+                object.fighting = message.fighting;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_Currency to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_Currency
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_Currency.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_Currency;
@@ -1925,19 +2331,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10010001 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10010001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10010001
-         * @static
-         * @param {doomsday_pt.ICs_10010001} message Cs_10010001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10010001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10010001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10010001
@@ -1974,22 +2367,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10010001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10010001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10010001} Cs_10010001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10010001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10010001 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10010001
@@ -2005,6 +2382,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isString(message.token))
                 return "token: string expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10010001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10010001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10010001} Cs_10010001
+         */
+        Cs_10010001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10010001)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10010001();
+            if (object.account_id != null)
+                message.account_id = object.account_id >>> 0;
+            if (object.token != null)
+                message.token = String(object.token);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10010001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10010001
+         * @static
+         * @param {doomsday_pt.Cs_10010001} message Cs_10010001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10010001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.account_id = 0;
+                object.token = "";
+            }
+            if (message.account_id != null && message.hasOwnProperty("account_id"))
+                object.account_id = message.account_id;
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10010001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10010001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10010001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10010001;
@@ -2082,19 +2513,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10010001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10010001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10010001
-         * @static
-         * @param {doomsday_pt.ISc_10010001} message Sc_10010001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10010001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10010001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10010001
@@ -2129,22 +2547,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10010001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10010001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10010001} Sc_10010001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10010001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10010001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10010001
@@ -2166,6 +2568,66 @@ $root.doomsday_pt = (function() {
                     return "role_info." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10010001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10010001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10010001} Sc_10010001
+         */
+        Sc_10010001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10010001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10010001();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10010001.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            if (object.role_info != null) {
+                if (typeof object.role_info !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10010001.role_info: object expected");
+                message.role_info = $root.doomsday_pt.Pt_RoleInfo.fromObject(object.role_info);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10010001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10010001
+         * @static
+         * @param {doomsday_pt.Sc_10010001} message Sc_10010001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10010001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.res = null;
+                object.role_info = null;
+            }
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            if (message.role_info != null && message.hasOwnProperty("role_info"))
+                object.role_info = $root.doomsday_pt.Pt_RoleInfo.toObject(message.role_info, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10010001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10010001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10010001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10010001;
@@ -2262,19 +2724,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10010002 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10010002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10010002
-         * @static
-         * @param {doomsday_pt.ICs_10010002} message Cs_10010002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10010002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10010002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10010002
@@ -2321,22 +2770,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10010002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10010002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10010002} Cs_10010002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10010002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10010002 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10010002
@@ -2356,6 +2789,70 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.hero_id))
                 return "hero_id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10010002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10010002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10010002} Cs_10010002
+         */
+        Cs_10010002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10010002)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10010002();
+            if (object.account_id != null)
+                message.account_id = object.account_id >>> 0;
+            if (object.token != null)
+                message.token = String(object.token);
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.hero_id != null)
+                message.hero_id = object.hero_id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10010002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10010002
+         * @static
+         * @param {doomsday_pt.Cs_10010002} message Cs_10010002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10010002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.account_id = 0;
+                object.token = "";
+                object.nickname = "";
+                object.hero_id = 0;
+            }
+            if (message.account_id != null && message.hasOwnProperty("account_id"))
+                object.account_id = message.account_id;
+            if (message.token != null && message.hasOwnProperty("token"))
+                object.token = message.token;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                object.hero_id = message.hero_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10010002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10010002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10010002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10010002;
@@ -2422,19 +2919,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10010002 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10010002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10010002
-         * @static
-         * @param {doomsday_pt.ISc_10010002} message Sc_10010002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10010002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10010002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10010002
@@ -2466,22 +2950,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10010002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10010002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10010002} Sc_10010002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10010002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10010002 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10010002
@@ -2498,6 +2966,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10010002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10010002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10010002} Sc_10010002
+         */
+        Sc_10010002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10010002)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10010002();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10010002.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10010002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10010002
+         * @static
+         * @param {doomsday_pt.Sc_10010002} message Sc_10010002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10010002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10010002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10010002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10010002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10010002;
@@ -2565,19 +3084,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10010003 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10010003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10010003
-         * @static
-         * @param {doomsday_pt.ICs_10010003} message Cs_10010003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10010003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10010003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10010003
@@ -2607,22 +3113,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10010003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10010003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10010003} Cs_10010003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10010003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10010003 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10010003
@@ -2637,6 +3127,54 @@ $root.doomsday_pt = (function() {
                 if (!$util.isInteger(message.rand))
                     return "rand: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10010003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10010003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10010003} Cs_10010003
+         */
+        Cs_10010003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10010003)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10010003();
+            if (object.rand != null)
+                message.rand = object.rand >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10010003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10010003
+         * @static
+         * @param {doomsday_pt.Cs_10010003} message Cs_10010003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10010003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.rand = 0;
+            if (message.rand != null && message.hasOwnProperty("rand"))
+                object.rand = message.rand;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10010003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10010003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10010003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10010003;
@@ -2703,19 +3241,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10010003 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10010003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10010003
-         * @static
-         * @param {doomsday_pt.ISc_10010003} message Sc_10010003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10010003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10010003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10010003
@@ -2747,22 +3272,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10010003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10010003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10010003} Sc_10010003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10010003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10010003 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10010003
@@ -2776,6 +3285,54 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.interval))
                 return "interval: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Sc_10010003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10010003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10010003} Sc_10010003
+         */
+        Sc_10010003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10010003)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10010003();
+            if (object.interval != null)
+                message.interval = object.interval >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10010003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10010003
+         * @static
+         * @param {doomsday_pt.Sc_10010003} message Sc_10010003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10010003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.interval = 0;
+            if (message.interval != null && message.hasOwnProperty("interval"))
+                object.interval = message.interval;
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10010003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10010003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10010003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10010003;
@@ -2842,19 +3399,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10010004 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10010004.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10010004
-         * @static
-         * @param {doomsday_pt.ISc_10010004} message Sc_10010004 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10010004.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10010004 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10010004
@@ -2886,22 +3430,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10010004 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10010004
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10010004} Sc_10010004
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10010004.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10010004 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10010004
@@ -2918,6 +3446,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10010004 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10010004
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10010004} Sc_10010004
+         */
+        Sc_10010004.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10010004)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10010004();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10010004.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10010004 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10010004
+         * @static
+         * @param {doomsday_pt.Sc_10010004} message Sc_10010004
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10010004.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10010004 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10010004
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10010004.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10010004;
@@ -2984,19 +3563,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10010005 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10010005.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10010005
-         * @static
-         * @param {doomsday_pt.ISc_10010005} message Sc_10010005 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10010005.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10010005 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10010005
@@ -3028,22 +3594,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10010005 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10010005
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10010005} Sc_10010005
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10010005.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10010005 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10010005
@@ -3060,6 +3610,57 @@ $root.doomsday_pt = (function() {
                     return "currency." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10010005 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10010005
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10010005} Sc_10010005
+         */
+        Sc_10010005.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10010005)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10010005();
+            if (object.currency != null) {
+                if (typeof object.currency !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10010005.currency: object expected");
+                message.currency = $root.doomsday_pt.Pt_Currency.fromObject(object.currency);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10010005 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10010005
+         * @static
+         * @param {doomsday_pt.Sc_10010005} message Sc_10010005
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10010005.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.currency = null;
+            if (message.currency != null && message.hasOwnProperty("currency"))
+                object.currency = $root.doomsday_pt.Pt_Currency.toObject(message.currency, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10010005 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10010005
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10010005.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10010005;
@@ -3136,19 +3737,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_AttList message, length delimited. Does not implicitly {@link doomsday_pt.Pt_AttList.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_AttList
-         * @static
-         * @param {doomsday_pt.IPt_AttList} message Pt_AttList message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_AttList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_AttList message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_AttList
@@ -3185,22 +3773,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_AttList message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_AttList
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_AttList} Pt_AttList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_AttList.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_AttList message.
          * @function verify
          * @memberof doomsday_pt.Pt_AttList
@@ -3216,6 +3788,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.att_value))
                 return "att_value: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_AttList message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_AttList
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_AttList} Pt_AttList
+         */
+        Pt_AttList.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_AttList)
+                return object;
+            var message = new $root.doomsday_pt.Pt_AttList();
+            if (object.att_id != null)
+                message.att_id = object.att_id >>> 0;
+            if (object.att_value != null)
+                message.att_value = object.att_value >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_AttList message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_AttList
+         * @static
+         * @param {doomsday_pt.Pt_AttList} message Pt_AttList
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_AttList.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.att_id = 0;
+                object.att_value = 0;
+            }
+            if (message.att_id != null && message.hasOwnProperty("att_id"))
+                object.att_id = message.att_id;
+            if (message.att_value != null && message.hasOwnProperty("att_value"))
+                object.att_value = message.att_value;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_AttList to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_AttList
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_AttList.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_AttList;
@@ -3292,19 +3918,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_HeroPanel message, length delimited. Does not implicitly {@link doomsday_pt.Pt_HeroPanel.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_HeroPanel
-         * @static
-         * @param {doomsday_pt.IPt_HeroPanel} message Pt_HeroPanel message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_HeroPanel.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_HeroPanel message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_HeroPanel
@@ -3341,22 +3954,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_HeroPanel message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_HeroPanel
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_HeroPanel} Pt_HeroPanel
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_HeroPanel.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_HeroPanel message.
          * @function verify
          * @memberof doomsday_pt.Pt_HeroPanel
@@ -3372,6 +3969,74 @@ $root.doomsday_pt = (function() {
             if (!$util.isString(message.heroname))
                 return "heroname: string expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_HeroPanel message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_HeroPanel
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_HeroPanel} Pt_HeroPanel
+         */
+        Pt_HeroPanel.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_HeroPanel)
+                return object;
+            var message = new $root.doomsday_pt.Pt_HeroPanel();
+            if (object.power != null)
+                if ($util.Long)
+                    (message.power = $util.Long.fromValue(object.power)).unsigned = true;
+                else if (typeof object.power === "string")
+                    message.power = parseInt(object.power, 10);
+                else if (typeof object.power === "number")
+                    message.power = object.power;
+                else if (typeof object.power === "object")
+                    message.power = new $util.LongBits(object.power.low >>> 0, object.power.high >>> 0).toNumber(true);
+            if (object.heroname != null)
+                message.heroname = String(object.heroname);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_HeroPanel message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_HeroPanel
+         * @static
+         * @param {doomsday_pt.Pt_HeroPanel} message Pt_HeroPanel
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_HeroPanel.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.power = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.power = options.longs === String ? "0" : 0;
+                object.heroname = "";
+            }
+            if (message.power != null && message.hasOwnProperty("power"))
+                if (typeof message.power === "number")
+                    object.power = options.longs === String ? String(message.power) : message.power;
+                else
+                    object.power = options.longs === String ? $util.Long.prototype.toString.call(message.power) : options.longs === Number ? new $util.LongBits(message.power.low >>> 0, message.power.high >>> 0).toNumber(true) : message.power;
+            if (message.heroname != null && message.hasOwnProperty("heroname"))
+                object.heroname = message.heroname;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_HeroPanel to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_HeroPanel
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_HeroPanel.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_HeroPanel;
@@ -3478,19 +4143,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_HeroInfo message, length delimited. Does not implicitly {@link doomsday_pt.Pt_HeroInfo.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_HeroInfo
-         * @static
-         * @param {doomsday_pt.IPt_HeroInfo} message Pt_HeroInfo message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_HeroInfo.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_HeroInfo message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_HeroInfo
@@ -3542,22 +4194,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_HeroInfo message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_HeroInfo
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_HeroInfo} Pt_HeroInfo
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_HeroInfo.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_HeroInfo message.
          * @function verify
          * @memberof doomsday_pt.Pt_HeroInfo
@@ -3579,6 +4215,103 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.grade))
                 return "grade: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_HeroInfo message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_HeroInfo
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_HeroInfo} Pt_HeroInfo
+         */
+        Pt_HeroInfo.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_HeroInfo)
+                return object;
+            var message = new $root.doomsday_pt.Pt_HeroInfo();
+            if (object.hero_id != null)
+                if ($util.Long)
+                    (message.hero_id = $util.Long.fromValue(object.hero_id)).unsigned = true;
+                else if (typeof object.hero_id === "string")
+                    message.hero_id = parseInt(object.hero_id, 10);
+                else if (typeof object.hero_id === "number")
+                    message.hero_id = object.hero_id;
+                else if (typeof object.hero_id === "object")
+                    message.hero_id = new $util.LongBits(object.hero_id.low >>> 0, object.hero_id.high >>> 0).toNumber(true);
+            if (object.index_id != null)
+                message.index_id = object.index_id >>> 0;
+            if (object.heroname != null)
+                message.heroname = String(object.heroname);
+            if (object.exper != null)
+                if ($util.Long)
+                    (message.exper = $util.Long.fromValue(object.exper)).unsigned = true;
+                else if (typeof object.exper === "string")
+                    message.exper = parseInt(object.exper, 10);
+                else if (typeof object.exper === "number")
+                    message.exper = object.exper;
+                else if (typeof object.exper === "object")
+                    message.exper = new $util.LongBits(object.exper.low >>> 0, object.exper.high >>> 0).toNumber(true);
+            if (object.grade != null)
+                message.grade = object.grade >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_HeroInfo message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_HeroInfo
+         * @static
+         * @param {doomsday_pt.Pt_HeroInfo} message Pt_HeroInfo
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_HeroInfo.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.hero_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.hero_id = options.longs === String ? "0" : 0;
+                object.index_id = 0;
+                object.heroname = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.exper = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.exper = options.longs === String ? "0" : 0;
+                object.grade = 0;
+            }
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                if (typeof message.hero_id === "number")
+                    object.hero_id = options.longs === String ? String(message.hero_id) : message.hero_id;
+                else
+                    object.hero_id = options.longs === String ? $util.Long.prototype.toString.call(message.hero_id) : options.longs === Number ? new $util.LongBits(message.hero_id.low >>> 0, message.hero_id.high >>> 0).toNumber(true) : message.hero_id;
+            if (message.index_id != null && message.hasOwnProperty("index_id"))
+                object.index_id = message.index_id;
+            if (message.heroname != null && message.hasOwnProperty("heroname"))
+                object.heroname = message.heroname;
+            if (message.exper != null && message.hasOwnProperty("exper"))
+                if (typeof message.exper === "number")
+                    object.exper = options.longs === String ? String(message.exper) : message.exper;
+                else
+                    object.exper = options.longs === String ? $util.Long.prototype.toString.call(message.exper) : options.longs === Number ? new $util.LongBits(message.exper.low >>> 0, message.exper.high >>> 0).toNumber(true) : message.exper;
+            if (message.grade != null && message.hasOwnProperty("grade"))
+                object.grade = message.grade;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_HeroInfo to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_HeroInfo
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_HeroInfo.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_HeroInfo;
@@ -3645,19 +4378,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10020001 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10020001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10020001
-         * @static
-         * @param {doomsday_pt.ICs_10020001} message Cs_10020001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10020001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10020001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10020001
@@ -3689,22 +4409,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10020001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10020001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10020001} Cs_10020001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10020001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10020001 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10020001
@@ -3718,6 +4422,68 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.hero_id) && !(message.hero_id && $util.isInteger(message.hero_id.low) && $util.isInteger(message.hero_id.high)))
                 return "hero_id: integer|Long expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10020001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10020001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10020001} Cs_10020001
+         */
+        Cs_10020001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10020001)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10020001();
+            if (object.hero_id != null)
+                if ($util.Long)
+                    (message.hero_id = $util.Long.fromValue(object.hero_id)).unsigned = true;
+                else if (typeof object.hero_id === "string")
+                    message.hero_id = parseInt(object.hero_id, 10);
+                else if (typeof object.hero_id === "number")
+                    message.hero_id = object.hero_id;
+                else if (typeof object.hero_id === "object")
+                    message.hero_id = new $util.LongBits(object.hero_id.low >>> 0, object.hero_id.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10020001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10020001
+         * @static
+         * @param {doomsday_pt.Cs_10020001} message Cs_10020001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10020001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.hero_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.hero_id = options.longs === String ? "0" : 0;
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                if (typeof message.hero_id === "number")
+                    object.hero_id = options.longs === String ? String(message.hero_id) : message.hero_id;
+                else
+                    object.hero_id = options.longs === String ? $util.Long.prototype.toString.call(message.hero_id) : options.longs === Number ? new $util.LongBits(message.hero_id.low >>> 0, message.hero_id.high >>> 0).toNumber(true) : message.hero_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10020001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10020001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10020001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10020001;
@@ -3787,19 +4553,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10020001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10020001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10020001
-         * @static
-         * @param {doomsday_pt.ISc_10020001} message Sc_10020001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10020001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10020001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10020001
@@ -3831,22 +4584,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10020001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10020001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10020001} Sc_10020001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10020001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10020001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10020001
@@ -3867,6 +4604,65 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10020001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10020001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10020001} Sc_10020001
+         */
+        Sc_10020001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10020001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10020001();
+            if (object.att_list) {
+                if (!Array.isArray(object.att_list))
+                    throw TypeError(".doomsday_pt.Sc_10020001.att_list: array expected");
+                message.att_list = [];
+                for (var i = 0; i < object.att_list.length; ++i) {
+                    if (typeof object.att_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10020001.att_list: object expected");
+                    message.att_list[i] = $root.doomsday_pt.Pt_AttList.fromObject(object.att_list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10020001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10020001
+         * @static
+         * @param {doomsday_pt.Sc_10020001} message Sc_10020001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10020001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.att_list = [];
+            if (message.att_list && message.att_list.length) {
+                object.att_list = [];
+                for (var j = 0; j < message.att_list.length; ++j)
+                    object.att_list[j] = $root.doomsday_pt.Pt_AttList.toObject(message.att_list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10020001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10020001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10020001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10020001;
@@ -3933,19 +4729,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10020002 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10020002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10020002
-         * @static
-         * @param {doomsday_pt.ICs_10020002} message Cs_10020002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10020002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10020002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10020002
@@ -3977,22 +4760,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10020002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10020002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10020002} Cs_10020002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10020002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10020002 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10020002
@@ -4006,6 +4773,68 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.hero_id) && !(message.hero_id && $util.isInteger(message.hero_id.low) && $util.isInteger(message.hero_id.high)))
                 return "hero_id: integer|Long expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10020002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10020002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10020002} Cs_10020002
+         */
+        Cs_10020002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10020002)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10020002();
+            if (object.hero_id != null)
+                if ($util.Long)
+                    (message.hero_id = $util.Long.fromValue(object.hero_id)).unsigned = true;
+                else if (typeof object.hero_id === "string")
+                    message.hero_id = parseInt(object.hero_id, 10);
+                else if (typeof object.hero_id === "number")
+                    message.hero_id = object.hero_id;
+                else if (typeof object.hero_id === "object")
+                    message.hero_id = new $util.LongBits(object.hero_id.low >>> 0, object.hero_id.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10020002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10020002
+         * @static
+         * @param {doomsday_pt.Cs_10020002} message Cs_10020002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10020002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.hero_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.hero_id = options.longs === String ? "0" : 0;
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                if (typeof message.hero_id === "number")
+                    object.hero_id = options.longs === String ? String(message.hero_id) : message.hero_id;
+                else
+                    object.hero_id = options.longs === String ? $util.Long.prototype.toString.call(message.hero_id) : options.longs === Number ? new $util.LongBits(message.hero_id.low >>> 0, message.hero_id.high >>> 0).toNumber(true) : message.hero_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10020002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10020002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10020002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10020002;
@@ -4085,19 +4914,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10020002 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10020002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10020002
-         * @static
-         * @param {doomsday_pt.ISc_10020002} message Sc_10020002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10020002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10020002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10020002
@@ -4134,22 +4950,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10020002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10020002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10020002} Sc_10020002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10020002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10020002 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10020002
@@ -4175,6 +4975,74 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10020002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10020002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10020002} Sc_10020002
+         */
+        Sc_10020002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10020002)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10020002();
+            if (object.HeroPanel != null) {
+                if (typeof object.HeroPanel !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10020002.HeroPanel: object expected");
+                message.HeroPanel = $root.doomsday_pt.Pt_HeroPanel.fromObject(object.HeroPanel);
+            }
+            if (object.att_list) {
+                if (!Array.isArray(object.att_list))
+                    throw TypeError(".doomsday_pt.Sc_10020002.att_list: array expected");
+                message.att_list = [];
+                for (var i = 0; i < object.att_list.length; ++i) {
+                    if (typeof object.att_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10020002.att_list: object expected");
+                    message.att_list[i] = $root.doomsday_pt.Pt_AttList.fromObject(object.att_list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10020002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10020002
+         * @static
+         * @param {doomsday_pt.Sc_10020002} message Sc_10020002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10020002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.att_list = [];
+            if (options.defaults)
+                object.HeroPanel = null;
+            if (message.HeroPanel != null && message.hasOwnProperty("HeroPanel"))
+                object.HeroPanel = $root.doomsday_pt.Pt_HeroPanel.toObject(message.HeroPanel, options);
+            if (message.att_list && message.att_list.length) {
+                object.att_list = [];
+                for (var j = 0; j < message.att_list.length; ++j)
+                    object.att_list[j] = $root.doomsday_pt.Pt_AttList.toObject(message.att_list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10020002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10020002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10020002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10020002;
@@ -4242,19 +5110,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10020003 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10020003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10020003
-         * @static
-         * @param {doomsday_pt.ICs_10020003} message Cs_10020003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10020003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10020003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10020003
@@ -4284,22 +5139,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10020003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10020003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10020003} Cs_10020003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10020003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10020003 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10020003
@@ -4314,6 +5153,54 @@ $root.doomsday_pt = (function() {
                 if (!$util.isInteger(message.rand))
                     return "rand: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10020003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10020003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10020003} Cs_10020003
+         */
+        Cs_10020003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10020003)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10020003();
+            if (object.rand != null)
+                message.rand = object.rand >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10020003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10020003
+         * @static
+         * @param {doomsday_pt.Cs_10020003} message Cs_10020003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10020003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.rand = 0;
+            if (message.rand != null && message.hasOwnProperty("rand"))
+                object.rand = message.rand;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10020003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10020003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10020003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10020003;
@@ -4393,19 +5280,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10020003 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10020003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10020003
-         * @static
-         * @param {doomsday_pt.ISc_10020003} message Sc_10020003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10020003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10020003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10020003
@@ -4442,22 +5316,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10020003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10020003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10020003} Sc_10020003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10020003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10020003 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10020003
@@ -4480,6 +5338,85 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10020003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10020003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10020003} Sc_10020003
+         */
+        Sc_10020003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10020003)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10020003();
+            if (object.exper_pool != null)
+                if ($util.Long)
+                    (message.exper_pool = $util.Long.fromValue(object.exper_pool)).unsigned = true;
+                else if (typeof object.exper_pool === "string")
+                    message.exper_pool = parseInt(object.exper_pool, 10);
+                else if (typeof object.exper_pool === "number")
+                    message.exper_pool = object.exper_pool;
+                else if (typeof object.exper_pool === "object")
+                    message.exper_pool = new $util.LongBits(object.exper_pool.low >>> 0, object.exper_pool.high >>> 0).toNumber(true);
+            if (object.hero_list) {
+                if (!Array.isArray(object.hero_list))
+                    throw TypeError(".doomsday_pt.Sc_10020003.hero_list: array expected");
+                message.hero_list = [];
+                for (var i = 0; i < object.hero_list.length; ++i) {
+                    if (typeof object.hero_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10020003.hero_list: object expected");
+                    message.hero_list[i] = $root.doomsday_pt.Pt_HeroInfo.fromObject(object.hero_list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10020003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10020003
+         * @static
+         * @param {doomsday_pt.Sc_10020003} message Sc_10020003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10020003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.hero_list = [];
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.exper_pool = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.exper_pool = options.longs === String ? "0" : 0;
+            if (message.exper_pool != null && message.hasOwnProperty("exper_pool"))
+                if (typeof message.exper_pool === "number")
+                    object.exper_pool = options.longs === String ? String(message.exper_pool) : message.exper_pool;
+                else
+                    object.exper_pool = options.longs === String ? $util.Long.prototype.toString.call(message.exper_pool) : options.longs === Number ? new $util.LongBits(message.exper_pool.low >>> 0, message.exper_pool.high >>> 0).toNumber(true) : message.exper_pool;
+            if (message.hero_list && message.hero_list.length) {
+                object.hero_list = [];
+                for (var j = 0; j < message.hero_list.length; ++j)
+                    object.hero_list[j] = $root.doomsday_pt.Pt_HeroInfo.toObject(message.hero_list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10020003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10020003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10020003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10020003;
@@ -4546,19 +5483,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10020004 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10020004.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10020004
-         * @static
-         * @param {doomsday_pt.ICs_10020004} message Cs_10020004 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10020004.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10020004 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10020004
@@ -4590,22 +5514,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10020004 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10020004
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10020004} Cs_10020004
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10020004.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10020004 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10020004
@@ -4619,6 +5527,68 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.hero_id) && !(message.hero_id && $util.isInteger(message.hero_id.low) && $util.isInteger(message.hero_id.high)))
                 return "hero_id: integer|Long expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10020004 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10020004
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10020004} Cs_10020004
+         */
+        Cs_10020004.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10020004)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10020004();
+            if (object.hero_id != null)
+                if ($util.Long)
+                    (message.hero_id = $util.Long.fromValue(object.hero_id)).unsigned = true;
+                else if (typeof object.hero_id === "string")
+                    message.hero_id = parseInt(object.hero_id, 10);
+                else if (typeof object.hero_id === "number")
+                    message.hero_id = object.hero_id;
+                else if (typeof object.hero_id === "object")
+                    message.hero_id = new $util.LongBits(object.hero_id.low >>> 0, object.hero_id.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10020004 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10020004
+         * @static
+         * @param {doomsday_pt.Cs_10020004} message Cs_10020004
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10020004.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.hero_id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.hero_id = options.longs === String ? "0" : 0;
+            if (message.hero_id != null && message.hasOwnProperty("hero_id"))
+                if (typeof message.hero_id === "number")
+                    object.hero_id = options.longs === String ? String(message.hero_id) : message.hero_id;
+                else
+                    object.hero_id = options.longs === String ? $util.Long.prototype.toString.call(message.hero_id) : options.longs === Number ? new $util.LongBits(message.hero_id.low >>> 0, message.hero_id.high >>> 0).toNumber(true) : message.hero_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10020004 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10020004
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10020004.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10020004;
@@ -4695,19 +5665,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10020004 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10020004.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10020004
-         * @static
-         * @param {doomsday_pt.ISc_10020004} message Sc_10020004 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10020004.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10020004 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10020004
@@ -4744,22 +5701,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10020004 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10020004
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10020004} Sc_10020004
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10020004.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10020004 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10020004
@@ -4781,6 +5722,66 @@ $root.doomsday_pt = (function() {
                     return "hero_info." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10020004 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10020004
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10020004} Sc_10020004
+         */
+        Sc_10020004.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10020004)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10020004();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10020004.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            if (object.hero_info != null) {
+                if (typeof object.hero_info !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10020004.hero_info: object expected");
+                message.hero_info = $root.doomsday_pt.Pt_HeroInfo.fromObject(object.hero_info);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10020004 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10020004
+         * @static
+         * @param {doomsday_pt.Sc_10020004} message Sc_10020004
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10020004.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.res = null;
+                object.hero_info = null;
+            }
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            if (message.hero_info != null && message.hasOwnProperty("hero_info"))
+                object.hero_info = $root.doomsday_pt.Pt_HeroInfo.toObject(message.hero_info, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10020004 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10020004
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10020004.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10020004;
@@ -4878,19 +5879,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_GoodsMsg message, length delimited. Does not implicitly {@link doomsday_pt.Pt_GoodsMsg.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_GoodsMsg
-         * @static
-         * @param {doomsday_pt.IPt_GoodsMsg} message Pt_GoodsMsg message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_GoodsMsg.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_GoodsMsg message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_GoodsMsg
@@ -4935,22 +5923,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_GoodsMsg message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_GoodsMsg
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_GoodsMsg} Pt_GoodsMsg
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_GoodsMsg.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_GoodsMsg message.
          * @function verify
          * @memberof doomsday_pt.Pt_GoodsMsg
@@ -4971,6 +5943,84 @@ $root.doomsday_pt = (function() {
                 if (!$util.isInteger(message.valid_time))
                     return "valid_time: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_GoodsMsg message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_GoodsMsg
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_GoodsMsg} Pt_GoodsMsg
+         */
+        Pt_GoodsMsg.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_GoodsMsg)
+                return object;
+            var message = new $root.doomsday_pt.Pt_GoodsMsg();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = true;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+            if (object.base_id != null)
+                message.base_id = object.base_id >>> 0;
+            if (object.num != null)
+                message.num = object.num >>> 0;
+            if (object.valid_time != null)
+                message.valid_time = object.valid_time >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_GoodsMsg message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_GoodsMsg
+         * @static
+         * @param {doomsday_pt.Pt_GoodsMsg} message Pt_GoodsMsg
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_GoodsMsg.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.base_id = 0;
+                object.num = 0;
+                object.valid_time = 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+            if (message.base_id != null && message.hasOwnProperty("base_id"))
+                object.base_id = message.base_id;
+            if (message.num != null && message.hasOwnProperty("num"))
+                object.num = message.num;
+            if (message.valid_time != null && message.hasOwnProperty("valid_time"))
+                object.valid_time = message.valid_time;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_GoodsMsg to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_GoodsMsg
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_GoodsMsg.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_GoodsMsg;
@@ -5063,19 +6113,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030001
-         * @static
-         * @param {doomsday_pt.ISc_10030001} message Sc_10030001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030001
@@ -5117,22 +6154,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030001} Sc_10030001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030001
@@ -5164,6 +6185,88 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030001} Sc_10030001
+         */
+        Sc_10030001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030001();
+            if (object.now_time != null)
+                message.now_time = object.now_time >>> 0;
+            if (object.bag_msg) {
+                if (!Array.isArray(object.bag_msg))
+                    throw TypeError(".doomsday_pt.Sc_10030001.bag_msg: array expected");
+                message.bag_msg = [];
+                for (var i = 0; i < object.bag_msg.length; ++i) {
+                    if (typeof object.bag_msg[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10030001.bag_msg: object expected");
+                    message.bag_msg[i] = $root.doomsday_pt.Pt_GoodsMsg.fromObject(object.bag_msg[i]);
+                }
+            }
+            if (object.entrepot_msg) {
+                if (!Array.isArray(object.entrepot_msg))
+                    throw TypeError(".doomsday_pt.Sc_10030001.entrepot_msg: array expected");
+                message.entrepot_msg = [];
+                for (var i = 0; i < object.entrepot_msg.length; ++i) {
+                    if (typeof object.entrepot_msg[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10030001.entrepot_msg: object expected");
+                    message.entrepot_msg[i] = $root.doomsday_pt.Pt_GoodsMsg.fromObject(object.entrepot_msg[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030001
+         * @static
+         * @param {doomsday_pt.Sc_10030001} message Sc_10030001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults) {
+                object.bag_msg = [];
+                object.entrepot_msg = [];
+            }
+            if (options.defaults)
+                object.now_time = 0;
+            if (message.now_time != null && message.hasOwnProperty("now_time"))
+                object.now_time = message.now_time;
+            if (message.bag_msg && message.bag_msg.length) {
+                object.bag_msg = [];
+                for (var j = 0; j < message.bag_msg.length; ++j)
+                    object.bag_msg[j] = $root.doomsday_pt.Pt_GoodsMsg.toObject(message.bag_msg[j], options);
+            }
+            if (message.entrepot_msg && message.entrepot_msg.length) {
+                object.entrepot_msg = [];
+                for (var j = 0; j < message.entrepot_msg.length; ++j)
+                    object.entrepot_msg[j] = $root.doomsday_pt.Pt_GoodsMsg.toObject(message.entrepot_msg[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030001;
@@ -5243,19 +6346,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030002 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030002
-         * @static
-         * @param {doomsday_pt.ISc_10030002} message Sc_10030002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030002
@@ -5292,22 +6382,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030002} Sc_10030002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030002 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030002
@@ -5330,6 +6404,71 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030002} Sc_10030002
+         */
+        Sc_10030002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030002)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030002();
+            if (object.location != null)
+                message.location = object.location >>> 0;
+            if (object.goods_msg) {
+                if (!Array.isArray(object.goods_msg))
+                    throw TypeError(".doomsday_pt.Sc_10030002.goods_msg: array expected");
+                message.goods_msg = [];
+                for (var i = 0; i < object.goods_msg.length; ++i) {
+                    if (typeof object.goods_msg[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10030002.goods_msg: object expected");
+                    message.goods_msg[i] = $root.doomsday_pt.Pt_GoodsMsg.fromObject(object.goods_msg[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030002
+         * @static
+         * @param {doomsday_pt.Sc_10030002} message Sc_10030002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.goods_msg = [];
+            if (options.defaults)
+                object.location = 0;
+            if (message.location != null && message.hasOwnProperty("location"))
+                object.location = message.location;
+            if (message.goods_msg && message.goods_msg.length) {
+                object.goods_msg = [];
+                for (var j = 0; j < message.goods_msg.length; ++j)
+                    object.goods_msg[j] = $root.doomsday_pt.Pt_GoodsMsg.toObject(message.goods_msg[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030002;
@@ -5406,19 +6545,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10030003 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10030003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10030003
-         * @static
-         * @param {doomsday_pt.ICs_10030003} message Cs_10030003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10030003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10030003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10030003
@@ -5455,22 +6581,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10030003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10030003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10030003} Cs_10030003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10030003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10030003 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10030003
@@ -5486,6 +6596,74 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.num))
                 return "num: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10030003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10030003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10030003} Cs_10030003
+         */
+        Cs_10030003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10030003)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10030003();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = true;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+            if (object.num != null)
+                message.num = object.num >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10030003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10030003
+         * @static
+         * @param {doomsday_pt.Cs_10030003} message Cs_10030003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10030003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.num = 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+            if (message.num != null && message.hasOwnProperty("num"))
+                object.num = message.num;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10030003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10030003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10030003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10030003;
@@ -5552,19 +6730,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030003 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030003
-         * @static
-         * @param {doomsday_pt.ISc_10030003} message Sc_10030003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030003
@@ -5596,22 +6761,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030003} Sc_10030003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030003 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030003
@@ -5628,6 +6777,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030003} Sc_10030003
+         */
+        Sc_10030003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030003)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030003();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10030003.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030003
+         * @static
+         * @param {doomsday_pt.Sc_10030003} message Sc_10030003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030003;
@@ -5694,19 +6894,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10030004 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10030004.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10030004
-         * @static
-         * @param {doomsday_pt.ICs_10030004} message Cs_10030004 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10030004.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10030004 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10030004
@@ -5738,22 +6925,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10030004 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10030004
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10030004} Cs_10030004
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10030004.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10030004 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10030004
@@ -5767,6 +6938,68 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
                 return "id: integer|Long expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10030004 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10030004
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10030004} Cs_10030004
+         */
+        Cs_10030004.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10030004)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10030004();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = true;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10030004 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10030004
+         * @static
+         * @param {doomsday_pt.Cs_10030004} message Cs_10030004
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10030004.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10030004 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10030004
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10030004.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10030004;
@@ -5833,19 +7066,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030004 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030004.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030004
-         * @static
-         * @param {doomsday_pt.ISc_10030004} message Sc_10030004 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030004.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030004 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030004
@@ -5877,22 +7097,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030004 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030004
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030004} Sc_10030004
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030004.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030004 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030004
@@ -5909,6 +7113,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030004 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030004
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030004} Sc_10030004
+         */
+        Sc_10030004.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030004)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030004();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10030004.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030004 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030004
+         * @static
+         * @param {doomsday_pt.Sc_10030004} message Sc_10030004
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030004.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030004 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030004
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030004.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030004;
@@ -5976,19 +7231,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10030005 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10030005.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10030005
-         * @static
-         * @param {doomsday_pt.ICs_10030005} message Cs_10030005 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10030005.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10030005 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10030005
@@ -6018,22 +7260,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10030005 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10030005
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10030005} Cs_10030005
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10030005.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10030005 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10030005
@@ -6048,6 +7274,54 @@ $root.doomsday_pt = (function() {
                 if (!$util.isInteger(message.id))
                     return "id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10030005 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10030005
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10030005} Cs_10030005
+         */
+        Cs_10030005.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10030005)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10030005();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10030005 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10030005
+         * @static
+         * @param {doomsday_pt.Cs_10030005} message Cs_10030005
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10030005.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.id = 0;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10030005 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10030005
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10030005.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10030005;
@@ -6114,19 +7388,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030005 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030005.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030005
-         * @static
-         * @param {doomsday_pt.ISc_10030005} message Sc_10030005 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030005.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030005 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030005
@@ -6158,22 +7419,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030005 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030005
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030005} Sc_10030005
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030005.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030005 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030005
@@ -6190,6 +7435,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030005 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030005
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030005} Sc_10030005
+         */
+        Sc_10030005.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030005)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030005();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10030005.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030005 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030005
+         * @static
+         * @param {doomsday_pt.Sc_10030005} message Sc_10030005
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030005.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030005 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030005
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030005.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030005;
@@ -6256,19 +7552,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10030006 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10030006.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10030006
-         * @static
-         * @param {doomsday_pt.ICs_10030006} message Cs_10030006 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10030006.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10030006 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10030006
@@ -6300,22 +7583,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10030006 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10030006
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10030006} Cs_10030006
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10030006.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10030006 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10030006
@@ -6329,6 +7596,68 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
                 return "id: integer|Long expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10030006 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10030006
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10030006} Cs_10030006
+         */
+        Cs_10030006.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10030006)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10030006();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = true;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10030006 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10030006
+         * @static
+         * @param {doomsday_pt.Cs_10030006} message Cs_10030006
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10030006.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10030006 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10030006
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10030006.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10030006;
@@ -6395,19 +7724,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030006 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030006.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030006
-         * @static
-         * @param {doomsday_pt.ISc_10030006} message Sc_10030006 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030006.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030006 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030006
@@ -6439,22 +7755,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030006 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030006
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030006} Sc_10030006
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030006.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030006 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030006
@@ -6471,6 +7771,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030006 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030006
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030006} Sc_10030006
+         */
+        Sc_10030006.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030006)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030006();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10030006.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030006 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030006
+         * @static
+         * @param {doomsday_pt.Sc_10030006} message Sc_10030006
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030006.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030006 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030006
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030006.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030006;
@@ -6558,19 +7909,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10030007 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10030007.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10030007
-         * @static
-         * @param {doomsday_pt.ICs_10030007} message Cs_10030007 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10030007.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10030007 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10030007
@@ -6610,22 +7948,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10030007 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10030007
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10030007} Cs_10030007
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10030007.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10030007 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10030007
@@ -6644,6 +7966,79 @@ $root.doomsday_pt = (function() {
                 if (!$util.isInteger(message.select_id))
                     return "select_id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10030007 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10030007
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10030007} Cs_10030007
+         */
+        Cs_10030007.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10030007)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10030007();
+            if (object.id != null)
+                if ($util.Long)
+                    (message.id = $util.Long.fromValue(object.id)).unsigned = true;
+                else if (typeof object.id === "string")
+                    message.id = parseInt(object.id, 10);
+                else if (typeof object.id === "number")
+                    message.id = object.id;
+                else if (typeof object.id === "object")
+                    message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+            if (object.use_num != null)
+                message.use_num = object.use_num >>> 0;
+            if (object.select_id != null)
+                message.select_id = object.select_id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10030007 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10030007
+         * @static
+         * @param {doomsday_pt.Cs_10030007} message Cs_10030007
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10030007.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.id = options.longs === String ? "0" : 0;
+                object.use_num = 0;
+                object.select_id = 0;
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (typeof message.id === "number")
+                    object.id = options.longs === String ? String(message.id) : message.id;
+                else
+                    object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+            if (message.use_num != null && message.hasOwnProperty("use_num"))
+                object.use_num = message.use_num;
+            if (message.select_id != null && message.hasOwnProperty("select_id"))
+                object.select_id = message.select_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10030007 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10030007
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10030007.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10030007;
@@ -6710,19 +8105,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10030007 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10030007.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10030007
-         * @static
-         * @param {doomsday_pt.ISc_10030007} message Sc_10030007 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10030007.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10030007 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10030007
@@ -6754,22 +8136,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10030007 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10030007
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10030007} Sc_10030007
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10030007.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10030007 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10030007
@@ -6786,6 +8152,57 @@ $root.doomsday_pt = (function() {
                     return "res." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10030007 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10030007
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10030007} Sc_10030007
+         */
+        Sc_10030007.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10030007)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10030007();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10030007.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10030007 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10030007
+         * @static
+         * @param {doomsday_pt.Sc_10030007} message Sc_10030007
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10030007.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10030007 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10030007
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10030007.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10030007;
@@ -6862,19 +8279,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_Pos message, length delimited. Does not implicitly {@link doomsday_pt.Pt_Pos.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_Pos
-         * @static
-         * @param {doomsday_pt.IPt_Pos} message Pt_Pos message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_Pos.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_Pos message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_Pos
@@ -6911,22 +8315,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_Pos message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_Pos
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_Pos} Pt_Pos
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_Pos.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_Pos message.
          * @function verify
          * @memberof doomsday_pt.Pt_Pos
@@ -6942,6 +8330,60 @@ $root.doomsday_pt = (function() {
             if (typeof message.y !== "number")
                 return "y: number expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_Pos message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_Pos
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_Pos} Pt_Pos
+         */
+        Pt_Pos.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_Pos)
+                return object;
+            var message = new $root.doomsday_pt.Pt_Pos();
+            if (object.x != null)
+                message.x = Number(object.x);
+            if (object.y != null)
+                message.y = Number(object.y);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_Pos message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_Pos
+         * @static
+         * @param {doomsday_pt.Pt_Pos} message Pt_Pos
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_Pos.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.x = 0;
+                object.y = 0;
+            }
+            if (message.x != null && message.hasOwnProperty("x"))
+                object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
+            if (message.y != null && message.hasOwnProperty("y"))
+                object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_Pos to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_Pos
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_Pos.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_Pos;
@@ -7008,19 +8450,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10040001 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10040001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10040001
-         * @static
-         * @param {doomsday_pt.ICs_10040001} message Cs_10040001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10040001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10040001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10040001
@@ -7052,22 +8481,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10040001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10040001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10040001} Cs_10040001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10040001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10040001 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10040001
@@ -7081,6 +8494,54 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.id))
                 return "id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10040001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10040001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10040001} Cs_10040001
+         */
+        Cs_10040001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10040001)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10040001();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10040001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10040001
+         * @static
+         * @param {doomsday_pt.Cs_10040001} message Cs_10040001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10040001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.id = 0;
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10040001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10040001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10040001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10040001;
@@ -7150,19 +8611,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10040001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10040001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10040001
-         * @static
-         * @param {doomsday_pt.ISc_10040001} message Sc_10040001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10040001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10040001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10040001
@@ -7199,22 +8647,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10040001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10040001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10040001} Sc_10040001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10040001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10040001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10040001
@@ -7233,6 +8665,62 @@ $root.doomsday_pt = (function() {
                         return "id_list: integer[] expected";
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10040001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10040001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10040001} Sc_10040001
+         */
+        Sc_10040001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10040001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10040001();
+            if (object.id_list) {
+                if (!Array.isArray(object.id_list))
+                    throw TypeError(".doomsday_pt.Sc_10040001.id_list: array expected");
+                message.id_list = [];
+                for (var i = 0; i < object.id_list.length; ++i)
+                    message.id_list[i] = object.id_list[i] >>> 0;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10040001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10040001
+         * @static
+         * @param {doomsday_pt.Sc_10040001} message Sc_10040001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10040001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.id_list = [];
+            if (message.id_list && message.id_list.length) {
+                object.id_list = [];
+                for (var j = 0; j < message.id_list.length; ++j)
+                    object.id_list[j] = message.id_list[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10040001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10040001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10040001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10040001;
@@ -7309,19 +8797,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10040002 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10040002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10040002
-         * @static
-         * @param {doomsday_pt.ICs_10040002} message Cs_10040002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10040002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10040002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10040002
@@ -7358,22 +8833,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10040002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10040002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10040002} Cs_10040002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10040002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10040002 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10040002
@@ -7389,6 +8848,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.tar_id))
                 return "tar_id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10040002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10040002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10040002} Cs_10040002
+         */
+        Cs_10040002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10040002)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10040002();
+            if (object.atk_id != null)
+                message.atk_id = object.atk_id >>> 0;
+            if (object.tar_id != null)
+                message.tar_id = object.tar_id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10040002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10040002
+         * @static
+         * @param {doomsday_pt.Cs_10040002} message Cs_10040002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10040002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.atk_id = 0;
+                object.tar_id = 0;
+            }
+            if (message.atk_id != null && message.hasOwnProperty("atk_id"))
+                object.atk_id = message.atk_id;
+            if (message.tar_id != null && message.hasOwnProperty("tar_id"))
+                object.tar_id = message.tar_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10040002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10040002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10040002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10040002;
@@ -7456,19 +8969,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10040002 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10040002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10040002
-         * @static
-         * @param {doomsday_pt.ISc_10040002} message Sc_10040002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10040002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10040002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10040002
@@ -7498,22 +8998,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10040002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10040002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10040002} Sc_10040002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10040002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10040002 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10040002
@@ -7530,6 +9014,57 @@ $root.doomsday_pt = (function() {
                     return "tar_pos." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10040002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10040002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10040002} Sc_10040002
+         */
+        Sc_10040002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10040002)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10040002();
+            if (object.tar_pos != null) {
+                if (typeof object.tar_pos !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10040002.tar_pos: object expected");
+                message.tar_pos = $root.doomsday_pt.Pt_Pos.fromObject(object.tar_pos);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10040002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10040002
+         * @static
+         * @param {doomsday_pt.Sc_10040002} message Sc_10040002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10040002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.tar_pos = null;
+            if (message.tar_pos != null && message.hasOwnProperty("tar_pos"))
+                object.tar_pos = $root.doomsday_pt.Pt_Pos.toObject(message.tar_pos, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10040002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10040002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10040002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10040002;
@@ -7606,19 +9141,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_GoodsList message, length delimited. Does not implicitly {@link doomsday_pt.Pt_GoodsList.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_GoodsList
-         * @static
-         * @param {doomsday_pt.IPt_GoodsList} message Pt_GoodsList message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_GoodsList.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_GoodsList message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_GoodsList
@@ -7655,22 +9177,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_GoodsList message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_GoodsList
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_GoodsList} Pt_GoodsList
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_GoodsList.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_GoodsList message.
          * @function verify
          * @memberof doomsday_pt.Pt_GoodsList
@@ -7686,6 +9192,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.goods_bought))
                 return "goods_bought: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_GoodsList message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_GoodsList
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_GoodsList} Pt_GoodsList
+         */
+        Pt_GoodsList.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_GoodsList)
+                return object;
+            var message = new $root.doomsday_pt.Pt_GoodsList();
+            if (object.goods_id != null)
+                message.goods_id = object.goods_id >>> 0;
+            if (object.goods_bought != null)
+                message.goods_bought = object.goods_bought >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_GoodsList message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_GoodsList
+         * @static
+         * @param {doomsday_pt.Pt_GoodsList} message Pt_GoodsList
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_GoodsList.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.goods_id = 0;
+                object.goods_bought = 0;
+            }
+            if (message.goods_id != null && message.hasOwnProperty("goods_id"))
+                object.goods_id = message.goods_id;
+            if (message.goods_bought != null && message.hasOwnProperty("goods_bought"))
+                object.goods_bought = message.goods_bought;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_GoodsList to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_GoodsList
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_GoodsList.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_GoodsList;
@@ -7762,19 +9322,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Pt_Goodsfresh message, length delimited. Does not implicitly {@link doomsday_pt.Pt_Goodsfresh.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Pt_Goodsfresh
-         * @static
-         * @param {doomsday_pt.IPt_Goodsfresh} message Pt_Goodsfresh message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Pt_Goodsfresh.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Pt_Goodsfresh message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Pt_Goodsfresh
@@ -7811,22 +9358,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Pt_Goodsfresh message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Pt_Goodsfresh
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Pt_Goodsfresh} Pt_Goodsfresh
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Pt_Goodsfresh.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Pt_Goodsfresh message.
          * @function verify
          * @memberof doomsday_pt.Pt_Goodsfresh
@@ -7842,6 +9373,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.goods_num))
                 return "goods_num: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Pt_Goodsfresh message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Pt_Goodsfresh
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Pt_Goodsfresh} Pt_Goodsfresh
+         */
+        Pt_Goodsfresh.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Pt_Goodsfresh)
+                return object;
+            var message = new $root.doomsday_pt.Pt_Goodsfresh();
+            if (object.goods_id != null)
+                message.goods_id = object.goods_id >>> 0;
+            if (object.goods_num != null)
+                message.goods_num = object.goods_num >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Pt_Goodsfresh message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Pt_Goodsfresh
+         * @static
+         * @param {doomsday_pt.Pt_Goodsfresh} message Pt_Goodsfresh
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Pt_Goodsfresh.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.goods_id = 0;
+                object.goods_num = 0;
+            }
+            if (message.goods_id != null && message.hasOwnProperty("goods_id"))
+                object.goods_id = message.goods_id;
+            if (message.goods_num != null && message.hasOwnProperty("goods_num"))
+                object.goods_num = message.goods_num;
+            return object;
+        };
+
+        /**
+         * Converts this Pt_Goodsfresh to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Pt_Goodsfresh
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Pt_Goodsfresh.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Pt_Goodsfresh;
@@ -7918,19 +9503,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10050001 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10050001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10050001
-         * @static
-         * @param {doomsday_pt.ICs_10050001} message Cs_10050001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10050001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10050001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10050001
@@ -7967,22 +9539,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10050001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10050001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10050001} Cs_10050001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10050001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10050001 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10050001
@@ -7998,6 +9554,60 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.shop_lv))
                 return "shop_lv: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10050001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10050001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10050001} Cs_10050001
+         */
+        Cs_10050001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10050001)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10050001();
+            if (object.shop_type != null)
+                message.shop_type = object.shop_type >>> 0;
+            if (object.shop_lv != null)
+                message.shop_lv = object.shop_lv >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10050001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10050001
+         * @static
+         * @param {doomsday_pt.Cs_10050001} message Cs_10050001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10050001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.shop_type = 0;
+                object.shop_lv = 0;
+            }
+            if (message.shop_type != null && message.hasOwnProperty("shop_type"))
+                object.shop_type = message.shop_type;
+            if (message.shop_lv != null && message.hasOwnProperty("shop_lv"))
+                object.shop_lv = message.shop_lv;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10050001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10050001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10050001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10050001;
@@ -8077,19 +9687,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10050001 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10050001.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10050001
-         * @static
-         * @param {doomsday_pt.ISc_10050001} message Sc_10050001 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10050001.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10050001 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10050001
@@ -8126,22 +9723,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10050001 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10050001
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10050001} Sc_10050001
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10050001.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10050001 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10050001
@@ -8167,6 +9748,74 @@ $root.doomsday_pt = (function() {
                     return "goods_fresh." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10050001 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10050001
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10050001} Sc_10050001
+         */
+        Sc_10050001.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10050001)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10050001();
+            if (object.goods_list) {
+                if (!Array.isArray(object.goods_list))
+                    throw TypeError(".doomsday_pt.Sc_10050001.goods_list: array expected");
+                message.goods_list = [];
+                for (var i = 0; i < object.goods_list.length; ++i) {
+                    if (typeof object.goods_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10050001.goods_list: object expected");
+                    message.goods_list[i] = $root.doomsday_pt.Pt_GoodsList.fromObject(object.goods_list[i]);
+                }
+            }
+            if (object.goods_fresh != null) {
+                if (typeof object.goods_fresh !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10050001.goods_fresh: object expected");
+                message.goods_fresh = $root.doomsday_pt.Pt_Goodsfresh.fromObject(object.goods_fresh);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10050001 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10050001
+         * @static
+         * @param {doomsday_pt.Sc_10050001} message Sc_10050001
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10050001.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.goods_list = [];
+            if (options.defaults)
+                object.goods_fresh = null;
+            if (message.goods_list && message.goods_list.length) {
+                object.goods_list = [];
+                for (var j = 0; j < message.goods_list.length; ++j)
+                    object.goods_list[j] = $root.doomsday_pt.Pt_GoodsList.toObject(message.goods_list[j], options);
+            }
+            if (message.goods_fresh != null && message.hasOwnProperty("goods_fresh"))
+                object.goods_fresh = $root.doomsday_pt.Pt_Goodsfresh.toObject(message.goods_fresh, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10050001 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10050001
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10050001.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10050001;
@@ -8253,19 +9902,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10050002 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10050002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10050002
-         * @static
-         * @param {doomsday_pt.ICs_10050002} message Cs_10050002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10050002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10050002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10050002
@@ -8307,22 +9943,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10050002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10050002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10050002} Cs_10050002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10050002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10050002 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10050002
@@ -8340,6 +9960,65 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.goods_id))
                 return "goods_id: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10050002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10050002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10050002} Cs_10050002
+         */
+        Cs_10050002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10050002)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10050002();
+            if (object.shop_type != null)
+                message.shop_type = object.shop_type >>> 0;
+            if (object.shop_lv != null)
+                message.shop_lv = object.shop_lv >>> 0;
+            if (object.goods_id != null)
+                message.goods_id = object.goods_id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10050002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10050002
+         * @static
+         * @param {doomsday_pt.Cs_10050002} message Cs_10050002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10050002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.shop_type = 0;
+                object.shop_lv = 0;
+                object.goods_id = 0;
+            }
+            if (message.shop_type != null && message.hasOwnProperty("shop_type"))
+                object.shop_type = message.shop_type;
+            if (message.shop_lv != null && message.hasOwnProperty("shop_lv"))
+                object.shop_lv = message.shop_lv;
+            if (message.goods_id != null && message.hasOwnProperty("goods_id"))
+                object.goods_id = message.goods_id;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10050002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10050002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10050002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10050002;
@@ -8416,19 +10095,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10050002 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10050002.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10050002
-         * @static
-         * @param {doomsday_pt.ISc_10050002} message Sc_10050002 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10050002.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10050002 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10050002
@@ -8465,22 +10131,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10050002 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10050002
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10050002} Sc_10050002
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10050002.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10050002 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10050002
@@ -8502,6 +10152,66 @@ $root.doomsday_pt = (function() {
                     return "goods_list." + error;
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10050002 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10050002
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10050002} Sc_10050002
+         */
+        Sc_10050002.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10050002)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10050002();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10050002.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            if (object.goods_list != null) {
+                if (typeof object.goods_list !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10050002.goods_list: object expected");
+                message.goods_list = $root.doomsday_pt.Pt_GoodsList.fromObject(object.goods_list);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10050002 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10050002
+         * @static
+         * @param {doomsday_pt.Sc_10050002} message Sc_10050002
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10050002.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.res = null;
+                object.goods_list = null;
+            }
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            if (message.goods_list != null && message.hasOwnProperty("goods_list"))
+                object.goods_list = $root.doomsday_pt.Pt_GoodsList.toObject(message.goods_list, options);
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10050002 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10050002
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10050002.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10050002;
@@ -8588,19 +10298,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Cs_10050003 message, length delimited. Does not implicitly {@link doomsday_pt.Cs_10050003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Cs_10050003
-         * @static
-         * @param {doomsday_pt.ICs_10050003} message Cs_10050003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Cs_10050003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Cs_10050003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Cs_10050003
@@ -8642,22 +10339,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Cs_10050003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Cs_10050003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Cs_10050003} Cs_10050003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Cs_10050003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Cs_10050003 message.
          * @function verify
          * @memberof doomsday_pt.Cs_10050003
@@ -8675,6 +10356,65 @@ $root.doomsday_pt = (function() {
             if (!$util.isInteger(message.fresh_goodsid))
                 return "fresh_goodsid: integer expected";
             return null;
+        };
+
+        /**
+         * Creates a Cs_10050003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Cs_10050003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Cs_10050003} Cs_10050003
+         */
+        Cs_10050003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Cs_10050003)
+                return object;
+            var message = new $root.doomsday_pt.Cs_10050003();
+            if (object.shop_type != null)
+                message.shop_type = object.shop_type >>> 0;
+            if (object.shop_lv != null)
+                message.shop_lv = object.shop_lv >>> 0;
+            if (object.fresh_goodsid != null)
+                message.fresh_goodsid = object.fresh_goodsid >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Cs_10050003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Cs_10050003
+         * @static
+         * @param {doomsday_pt.Cs_10050003} message Cs_10050003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Cs_10050003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.shop_type = 0;
+                object.shop_lv = 0;
+                object.fresh_goodsid = 0;
+            }
+            if (message.shop_type != null && message.hasOwnProperty("shop_type"))
+                object.shop_type = message.shop_type;
+            if (message.shop_lv != null && message.hasOwnProperty("shop_lv"))
+                object.shop_lv = message.shop_lv;
+            if (message.fresh_goodsid != null && message.hasOwnProperty("fresh_goodsid"))
+                object.fresh_goodsid = message.fresh_goodsid;
+            return object;
+        };
+
+        /**
+         * Converts this Cs_10050003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Cs_10050003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Cs_10050003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Cs_10050003;
@@ -8754,19 +10494,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Encodes the specified Sc_10050003 message, length delimited. Does not implicitly {@link doomsday_pt.Sc_10050003.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof doomsday_pt.Sc_10050003
-         * @static
-         * @param {doomsday_pt.ISc_10050003} message Sc_10050003 message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Sc_10050003.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
          * Decodes a Sc_10050003 message from the specified reader or buffer.
          * @function decode
          * @memberof doomsday_pt.Sc_10050003
@@ -8803,22 +10530,6 @@ $root.doomsday_pt = (function() {
         };
 
         /**
-         * Decodes a Sc_10050003 message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof doomsday_pt.Sc_10050003
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {doomsday_pt.Sc_10050003} Sc_10050003
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Sc_10050003.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
          * Verifies a Sc_10050003 message.
          * @function verify
          * @memberof doomsday_pt.Sc_10050003
@@ -8844,6 +10555,74 @@ $root.doomsday_pt = (function() {
                 }
             }
             return null;
+        };
+
+        /**
+         * Creates a Sc_10050003 message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof doomsday_pt.Sc_10050003
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {doomsday_pt.Sc_10050003} Sc_10050003
+         */
+        Sc_10050003.fromObject = function fromObject(object) {
+            if (object instanceof $root.doomsday_pt.Sc_10050003)
+                return object;
+            var message = new $root.doomsday_pt.Sc_10050003();
+            if (object.res != null) {
+                if (typeof object.res !== "object")
+                    throw TypeError(".doomsday_pt.Sc_10050003.res: object expected");
+                message.res = $root.doomsday_pt.ResData.fromObject(object.res);
+            }
+            if (object.goods_list) {
+                if (!Array.isArray(object.goods_list))
+                    throw TypeError(".doomsday_pt.Sc_10050003.goods_list: array expected");
+                message.goods_list = [];
+                for (var i = 0; i < object.goods_list.length; ++i) {
+                    if (typeof object.goods_list[i] !== "object")
+                        throw TypeError(".doomsday_pt.Sc_10050003.goods_list: object expected");
+                    message.goods_list[i] = $root.doomsday_pt.Pt_GoodsList.fromObject(object.goods_list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Sc_10050003 message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof doomsday_pt.Sc_10050003
+         * @static
+         * @param {doomsday_pt.Sc_10050003} message Sc_10050003
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Sc_10050003.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.goods_list = [];
+            if (options.defaults)
+                object.res = null;
+            if (message.res != null && message.hasOwnProperty("res"))
+                object.res = $root.doomsday_pt.ResData.toObject(message.res, options);
+            if (message.goods_list && message.goods_list.length) {
+                object.goods_list = [];
+                for (var j = 0; j < message.goods_list.length; ++j)
+                    object.goods_list[j] = $root.doomsday_pt.Pt_GoodsList.toObject(message.goods_list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Sc_10050003 to JSON.
+         * @function toJSON
+         * @memberof doomsday_pt.Sc_10050003
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Sc_10050003.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         return Sc_10050003;

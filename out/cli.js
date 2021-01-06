@@ -11,11 +11,11 @@ cmd
     await script.generate(".");
 });
 cmd
-.command("add")
-.alias('a')
+.command("init")
+.alias('i')
 .description("初始化项目")
 .action(async (...arg)=>{
     console.log("初始化项目");
-    await script.initEgretProj(".",arg[0]);
+    await script.initProj(".",arg[0]);
 })
 cmd.parse(process.argv);

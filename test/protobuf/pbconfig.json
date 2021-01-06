@@ -2,11 +2,11 @@
 	"options": {
 		"no-create": false,
 		"no-verify": false,
-		"no-convert": true,
-		"no-delimited": false
+		"no-convert": false,
+		"no-delimited": true
 	},
 	"outputFileType": 0,
-	"dtsOutDir": "protofile",
+	"dtsOutDir": "dts",
 	"outFileName": "proto_bundle",
 	"sourceRoot": "protofile",
 	"outputDir": "bundles"
