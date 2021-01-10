@@ -1,5 +1,11 @@
 # egf protobuf
 
+## 仓库迁移提示
+
+这个仓库不再更新了哦。因为我把这个工具进行优化集成到我的框架仓库中了。会持续优化更新~
+
+传送门: [EasyGameFramework](https://github.com/AILHC/EasyGameFrameworkOpen.git)
+
 ## 特性
 
 
